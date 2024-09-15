@@ -1,3 +1,4 @@
+I've attached the database with this as well. 
 🚀 Maven Project Setup Guide
 This guide will help you smoothly convert your existing dynamic web project into a Maven project and get everything up and running! 😎
 
@@ -43,3 +44,35 @@ src/main/webapp/resources	CSS, JS, Images, and other static resources
 🎉 And that’s it! You've successfully converted your dynamic web project into a Maven project! 🎉
 
 Now, you're all set to manage your dependencies easily and organize your code like a pro! 💪
+
+
+============================================================================================================================================================================================================================================================================
+
+Setting Up the Database Connection 🛠️
+  
+  1.  Start Apache Server:
+
+    Open the XAMPP Control Panel. 🖥️
+    Click the "Start" button next to "Apache." 🚀
+    If Apache doesn’t start, it might be due to a port conflict with Tomcat. To fix this:
+    Stop Tomcat by clicking the "Stop" button next to it. 🛑
+    Alternatively, you can change the port number for Tomcat if needed. 🔧
+    
+  2.  Create a Database:
+
+    Open your web browser and go to http://localhost/phpmyadmin. 🌐
+    Click on the "Databases" tab at the top of the page. 📚
+    In the "Create database" field, type online_store and click "Create." 🏗️
+    
+    
+  3.  Import the SQL File:
+
+    After creating the database, click on the "SQL" tab in the top navigation bar. 📂
+    Copy the contents of the online_store.sql file and paste them into the text area. 📋
+    Scroll down and click the "Go" button to execute the SQL script and set up the database schema. ✅
+    
+  4.  Update Database Connection Credentials:
+
+    Locate the DbCon.java file in your project directory under com.company.connection. 📁
+    Open DbCon.java. 📝
+    Update the database connection credentials (e.g., username, password, database URL) to match your local setup. 🔑
