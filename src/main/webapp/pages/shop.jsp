@@ -82,34 +82,30 @@
                     <!-- <h3 class="text-2xl font-bold mb-4">Kitchen Appliances</h3> -->
                    
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    <%
-						if (!products.isEmpty()) {
-							for (Product p : products) {
-					%>
-                        <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
-    <div class="w-72 h-48 flex justify-center items-center bg-gray-200"> <!-- Fixed width: 300px, height: 200px -->
-        <img src="../components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full object-contain">
-    </div>
-    <div class="p-4">
-        <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
-        <p class="text-gray-600">LKR <%= p.getPrice() %></p>
-         
-        <a href="../add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
-            Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
-        </a>
-        <a href="../make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
-            Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
-        </a>
-    </div>
-</div>
-                        
-                        
-                        
-                        
-                    <%
+	                    <%
+							if (!products.isEmpty()) {
+								for (Product p : products) {
+						%>
+	                        <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+	    						<div class="w-72 h-48 flex justify-center items-center bg-gray-200">
+	        						<img src="../components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full object-contain">
+	    						</div>
+	    						<div class="p-4">
+	    						    <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
+	    						    <p class="text-gray-600">LKR <%= p.getPrice() %></p>
+	    						     
+	    						    <a href="../add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
+	    						        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
+	    						    </a>
+	    						    <a href="../make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
+	    						        Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
+	    						    </a>
+	    						</div>
+							</div>  
+	                    <%
+								}
 							}
-						}
-                    %>
+	                    %>
                     </div>
                     
                     
