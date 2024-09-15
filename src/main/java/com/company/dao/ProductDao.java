@@ -1,0 +1,124 @@
+package com.company.dao;
+
+import java.sql.*;
+import java.util.*;
+
+import com.company.modal.Cart;
+import com.company.modal.Product;
+
+public class ProductDao {
+	private Connection con;
+
+	private String query;
+    private PreparedStatement pst;
+    private ResultSet rs;
+    
+
+	public ProductDao(Connection con) {
+		super();
+		this.con = con;
+	}
+	
+	
+	public List<Product> getAllProducts() {
+        List<Product> item = new ArrayList<>();
+        try {
+
+            query = "select * from products";
+            pst = this.con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	Product pr = new Product();
+                pr.setId(rs.getInt("id"));
+                pr.setName(rs.getString("name"));
+                pr.setCategory(rs.getString("category"));
+                pr.setPrice(rs.getDouble("price"));
+                pr.setImage(rs.getString("image"));
+
+                item.add(pr);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return item;
+    }
+	
+	// method to get the product to show it on orders 
+	 public Product getSingleProduct(int pId) {
+		 Product row = null;
+	        try {
+	            query = "select * from products where id=? ";
+
+	            pst = this.con.prepareStatement(query);
+	            pst.setInt(1, pId);
+	            ResultSet rs = pst.executeQuery();
+
+	            while (rs.next()) {
+	            	row = new Product();
+	                row.setId(rs.getInt("id"));
+	                row.setName(rs.getString("name"));
+	                row.setCategory(rs.getString("category"));
+	                row.setPrice(rs.getDouble("price"));
+	                row.setImage(rs.getString("image"));
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return row;
+	    }
+	
+	public double getTotalCartPrice(ArrayList<Cart> cartList) {
+        double sum = 0;
+        try {
+            if (cartList.size() > 0) {
+                for (Cart item : cartList) {
+                    query = "select price from products where id=?";
+                    pst = this.con.prepareStatement(query);
+                    pst.setInt(1, item.getId());
+                    rs = pst.executeQuery();
+                    while (rs.next()) {
+                        sum+=rs.getDouble("price")*item.getQuantity();
+                    }
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return sum;
+    }
+
+    
+    public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
+        List<Cart> cItems = new ArrayList<>();
+        try {
+            if (cartList.size() > 0) {
+                for (Cart c : cartList) {
+                    query = "select * from products where id=?";
+                    pst = this.con.prepareStatement(query);
+                    pst.setInt(1, c.getId());
+                    rs = pst.executeQuery();
+                    while (rs.next()) {
+                        Cart cProduct = new Cart();
+                        cProduct.setId(rs.getInt("id"));
+                        cProduct.setName(rs.getString("name"));
+                        cProduct.setCategory(rs.getString("category"));
+                        cProduct.setPrice(rs.getDouble("price")*c.getQuantity());
+                        cProduct.setQuantity(c.getQuantity());
+                        cProduct.setImage(rs.getString("image"));
+                        cItems.add(cProduct);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cItems;
+    }
+}
+
