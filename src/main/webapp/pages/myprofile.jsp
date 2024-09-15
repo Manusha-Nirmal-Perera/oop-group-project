@@ -10,7 +10,16 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    <jsp:include page="../includes/ALheader.jsp" />
+    <%
+        if (session.getAttribute("user") != null) {
+        	
+    %><jsp:include page="../includes/ALheader.jsp" /> <% 
+
+        } else {
+            response.sendRedirect("home.jsp");
+            return;
+        }
+    %>
 	<%
 		User u = (User) request.getSession().getAttribute("user");
 	%>
@@ -52,7 +61,7 @@
             </div>
         </div>
     </section>
-
+	<p><%=u.getId() %></p>
     <%@ include file="../includes/footer.jsp" %>
 </body>
 </html>
