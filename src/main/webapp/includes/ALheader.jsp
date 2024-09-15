@@ -25,7 +25,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <nav class="bg-gray-800 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-white text-2xl font-bold">QWERTY</a>
+        <a href="#" class="text-white text-2xl font-bold">Evermart</a>
         <div class="flex space-x-4">
             <a href="home.jsp" class="text-gray-300 hover:text-white">Home</a>
             <a href="shop.jsp" class="text-gray-300 hover:text-white">Shop</a>

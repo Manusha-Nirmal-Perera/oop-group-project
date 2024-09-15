@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Store</title>
+    <title>Evermart</title>
 	<%@ include file="../includes/imports.jsp" %>
 
 </head>
@@ -29,7 +29,7 @@
     <section class="bg-white py-20">
         <div class="container mx-auto flex flex-col lg:flex-row items-center">
             <div class="lg:w-1/2">
-                <h1 class="text-4xl lg:text-6xl font-bold text-gray-800 mb-6">Welcome to QWERTY</h1>
+                <h1 class="text-4xl lg:text-6xl font-bold text-gray-800 mb-6">Welcome to Evermart</h1>
                 <p class="text-lg text-gray-600 mb-6">Discover the best products at unbeatable prices. Shop now and enjoy exclusive deals.</p>
                 <a href="shop.jsp" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Shop Now</a>
             </div>
