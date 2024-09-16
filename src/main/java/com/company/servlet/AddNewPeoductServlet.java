@@ -69,9 +69,8 @@ public class AddNewPeoductServlet extends HttpServlet {
 				productdao = new ProductDao(DbCon.getConnection());
 				boolean result = productdao.saveProduct(product);
 				if(result) {
-//					TODO success adding
-				}else {
-//					TODO failed
+					request.getSession().setAttribute("alertMessage", "Item added");
+	                request.getSession().setAttribute("alertType", "success");
 				}
 		     } catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -80,8 +79,9 @@ public class AddNewPeoductServlet extends HttpServlet {
 	     } catch (Exception e) {
 	    	 e.printStackTrace();
 	     }
-
-	     response.sendRedirect("success.jsp");
+	     request.getSession().setAttribute("alertMessage", "Something went wrong !");
+         request.getSession().setAttribute("alertType", "error");
+	     response.sendRedirect("adminpanel/addproducts.jsp");
 	}
 
 }
