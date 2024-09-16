@@ -29,5 +29,5 @@
         <input type="submit" class="bg-blue-500 text-white p-2 rounded" value="Add Product">
     </form>
 </div>
-
+<%@ include file="../includes/alert.jsp" %>
 <%@ include file="./includes/ending.jsp" %>

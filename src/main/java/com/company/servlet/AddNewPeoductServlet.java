@@ -71,6 +71,10 @@ public class AddNewPeoductServlet extends HttpServlet {
 				if(result) {
 					request.getSession().setAttribute("alertMessage", "Item added");
 	                request.getSession().setAttribute("alertType", "success");
+	                response.sendRedirect("adminpanel/addproducts.jsp");
+				}else {
+					request.getSession().setAttribute("alertMessage", "Something went wrong !");
+			        request.getSession().setAttribute("alertType", "error");
 				}
 		     } catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -79,9 +83,6 @@ public class AddNewPeoductServlet extends HttpServlet {
 	     } catch (Exception e) {
 	    	 e.printStackTrace();
 	     }
-	     request.getSession().setAttribute("alertMessage", "Something went wrong !");
-         request.getSession().setAttribute("alertType", "error");
-	     response.sendRedirect("adminpanel/addproducts.jsp");
 	}
 
 }
