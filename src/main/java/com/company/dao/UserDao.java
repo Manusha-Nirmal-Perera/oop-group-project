@@ -1,6 +1,8 @@
 package com.company.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -35,6 +37,7 @@ public class UserDao {
                 	user.setEmail(rs.getString("email"));
                 	user.setPassword("password");
                 	user.setRegisteredDate(rs.getString("registered_at"));
+                	user.setImage(rs.getString("image"));
             	}else {
             		System.out.println("Invalid password");
             	}
@@ -71,6 +74,29 @@ public class UserDao {
 	    	e.printStackTrace();
 	    }
 		return result;
+	}
+	
+	public List<User> getAllUsers(){
+		List<User> user = new ArrayList<>();
+		try {
+            query = "select * from users";
+            pst = this.con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setfName(rs.getString("firstName"));
+                u.setlName(rs.getString("lastName"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+                u.setImage(rs.getString("password"));	
+                user.add(u);
+            }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 }

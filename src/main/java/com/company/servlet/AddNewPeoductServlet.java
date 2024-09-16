@@ -1,10 +1,8 @@
 package com.company.servlet;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -29,7 +27,7 @@ public class AddNewPeoductServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 response.setContentType("text/html");
-	     PrintWriter out = response.getWriter();
+//	     PrintWriter out = response.getWriter();
 	     
 	     try {
 		     String productName = request.getParameter("pr-name");
@@ -71,7 +69,6 @@ public class AddNewPeoductServlet extends HttpServlet {
 				if(result) {
 					request.getSession().setAttribute("alertMessage", "Item added");
 	                request.getSession().setAttribute("alertType", "success");
-	                response.sendRedirect("adminpanel/addproducts.jsp");
 				}else {
 					request.getSession().setAttribute("alertMessage", "Something went wrong !");
 			        request.getSession().setAttribute("alertType", "error");
@@ -83,6 +80,7 @@ public class AddNewPeoductServlet extends HttpServlet {
 	     } catch (Exception e) {
 	    	 e.printStackTrace();
 	     }
+	     response.sendRedirect("adminpanel/addproducts.jsp");
 	}
 
 }

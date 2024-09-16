@@ -7,6 +7,7 @@ public class User {
 	private String email;
 	private String password;
 	private String registeredDate;
+	private String image;
 
 	public User() {
 	}
@@ -22,25 +23,20 @@ public class User {
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getfName() {
 		return fName;
-	}
-
-	public String getlName() {
-		return lName;
-	}
-	public String getRegisteredDate() {
-		return registeredDate;
 	}
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
 
+	public String getlName() {
+		return lName;
+	}
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
@@ -48,7 +44,6 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -56,11 +51,21 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getRegisteredDate() {
+		return registeredDate;
+	}
 	public void setRegisteredDate(String registeredDate) {
 		this.registeredDate = registeredDate;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

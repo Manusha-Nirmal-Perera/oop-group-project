@@ -30,7 +30,7 @@
                 <div class="flex flex-col md:flex-row items-center md:items-start">
                     <!-- Profile Picture -->
                     <div class="w-48 h-48 bg-gray-200 rounded-full overflow-hidden mb-6 md:mb-0 md:mr-8">
-                        <img src="https://via.placeholder.com/192" alt="Profile Picture" class="w-full h-full object-cover">
+                        <img src="<%= u.getImage() %>" alt="Profile Picture" class="w-full h-full object-cover">
                     </div>
                     <!-- User Information -->
                     <div class="md:flex-1">

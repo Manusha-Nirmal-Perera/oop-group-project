@@ -66,7 +66,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-
+				
                             <tr>
                                 <td class="py-2 text-center">1</td>
                                 <td class="py-2 text-center">1</td>
