@@ -21,7 +21,6 @@ public class ProductDao {
 	}
 	
 //	method to add new products
-	    
 	public boolean saveProduct(Product product) throws ClassNotFoundException {
 		boolean result = false;
 		try {
@@ -72,7 +71,7 @@ public class ProductDao {
 	 public Product getSingleProduct(int pId) {
 		 Product row = null;
 	        try {
-	            query = "select * from products where id=? ";
+	            query = "SELECT * FROM products WHERE id=? ";
 
 	            pst = this.con.prepareStatement(query);
 	            pst.setInt(1, pId);
@@ -98,7 +97,7 @@ public class ProductDao {
 	        try {
 	            if (cartList.size() > 0) {
 	                for (Cart item : cartList) {
-	                    query = "select price from products where id=?";
+	                    query = "SELECT price FROM products WHERE id=?";
 	                    pst = this.con.prepareStatement(query);
 	                    pst.setInt(1, item.getId());
 	                    rs = pst.executeQuery();
@@ -121,7 +120,7 @@ public class ProductDao {
 	        try {
 	            if (cartList.size() > 0) {
 	                for (Cart c : cartList) {
-	                    query = "select * from products where id=?";
+	                    query = "SELECT * FROM products WHERE id=?";
 	                    pst = this.con.prepareStatement(query);
 	                    pst.setInt(1, c.getId());
 	                    rs = pst.executeQuery();
@@ -155,14 +154,6 @@ public class ProductDao {
 	            res = rowsAffected > 0;
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        } finally {
-	            if (pst != null) {
-	                try {
-	                    pst.close();
-	                } catch (SQLException e) {
-	                    e.printStackTrace();
-	                }
-	            }
 	        }
 	        return res;
 	    }

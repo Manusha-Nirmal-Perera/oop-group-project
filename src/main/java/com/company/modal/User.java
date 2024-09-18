@@ -5,6 +5,7 @@ public class User {
 	private String fName;
 	private String lName;
 	private String email;
+	private String phone;
 	private String password;
 	private String registeredDate;
 	private String image;
@@ -47,7 +48,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	public String getPassword() {
 		return password;
 	}

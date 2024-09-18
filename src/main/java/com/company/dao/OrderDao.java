@@ -21,10 +21,11 @@ public class OrderDao {
 		this.con = con;
 	}
 
+//	method to handle new orders 
 	public boolean insertOrder(Order model) {
         boolean result = false;
         try {
-            query = "insert into orders (p_id, u_id, o_quantity, o_date) values(?,?,?,?)";
+            query = "INSERT INTO orders (p_id, u_id, o_quantity, o_date) VALUES(?,?,?,?)";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, model.getId());
             pst.setInt(2, model.getUid());
@@ -38,11 +39,11 @@ public class OrderDao {
         return result;
     }
 	
-
+//	method to get all the orders that are made by a user
     public List<Order> userOrders(int id) {
         List<Order> list = new ArrayList<>();
         try {
-            query = "select * from orders where u_id=? order by orders.o_id desc";
+            query = "SELECT * FROM orders WHERE u_id=? ORDER BY orders.o_id desc";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -66,11 +67,12 @@ public class OrderDao {
         }
         return list;
     }
-
+    
+//	method to handle cancel order
     public void cancelOrder(int id) {
         //boolean result = false;
         try {
-            query = "delete from orders where o_id=?";
+            query = "DELETE FROM orders WHERE o_id=?";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, id);
             pst.execute();
