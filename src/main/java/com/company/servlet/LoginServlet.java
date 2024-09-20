@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("alertType", "error");
 				System.out.println("there is no user-from servlet");
 			}
-//			response.sendRedirect("pages/home.jsp");
+			response.sendRedirect("pages/home.jsp");
 
 		} catch (ClassNotFoundException|SQLException e) {
 			e.printStackTrace();

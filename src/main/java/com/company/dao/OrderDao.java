@@ -20,17 +20,55 @@ public class OrderDao {
 	public OrderDao(Connection con) {
 		this.con = con;
 	}
+//	method to get all the orders 
+	public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        try {
 
+            query = "SELECT * FROM orders";
+            pst = this.con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	try {
+            	Order o = new Order();
+            	ProductDao productDao = new ProductDao(this.con);
+                int pId = rs.getInt("p_id");
+                Product product = productDao.getSingleProduct(pId);
+                
+//                System.out.println(product);
+            	o.setOrderId(rs.getInt("o_id"));
+                o.setUid(rs.getInt("u_id"));
+                o.setId(rs.getInt("p_id"));
+                o.setQunatity(rs.getInt("o_quantity"));
+                o.setDate(rs.getString("o_date"));
+                o.setStatus(rs.getString("o_status"));
+                o.setName(product.getName());
+                o.setPrice(product.getPrice());
+                o.setImage(product.getImage());
+                orders.add(o);
+            	} catch(Exception e) {
+            		e.printStackTrace();
+            	}
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return orders;
+    }
+	
 //	method to handle new orders 
 	public boolean insertOrder(Order model) {
         boolean result = false;
         try {
-            query = "INSERT INTO orders (p_id, u_id, o_quantity, o_date) VALUES(?,?,?,?)";
+            query = "INSERT INTO orders (p_id, u_id, o_quantity) VALUES(?,?,?)";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, model.getId());
             pst.setInt(2, model.getUid());
             pst.setInt(3, model.getQunatity());
-            pst.setString(4, model.getDate());
             pst.executeUpdate();
             result = true;
         } catch (SQLException e) {
@@ -56,7 +94,7 @@ public class OrderDao {
                 order.setId(pId);
                 order.setName(product.getName());
                 order.setCategory(product.getCategory());
-                order.setPrice(product.getPrice()*rs.getInt("o_quantity"));
+                order.setPrice(product.getPrice());
                 order.setImage(product.getImage());
                 order.setQunatity(rs.getInt("o_quantity"));
                 order.setDate(rs.getString("o_date"));
@@ -83,4 +121,38 @@ public class OrderDao {
         }
         //return result;
     }
+	public boolean adminDeliverOrder(int id) {
+		boolean res = false;
+
+		query = "UPDATE orders SET o_status = ? WHERE o_id = ?";
+
+        try {
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, "Delivered");
+			pst.setInt(2, id);	
+
+            
+            int rowsAffected = pst.executeUpdate();
+            res = rowsAffected > 0;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+		
+		return res;
+		
+	}
+	public boolean adminCancelOrder(int id) {
+		boolean result = false;
+		try {
+            query = "DELETE FROM orders WHERE o_id=?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.execute();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.print(e.getMessage());
+        }
+		return result;
+	}
 }

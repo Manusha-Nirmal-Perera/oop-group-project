@@ -6,6 +6,7 @@ public class Order extends Product{
 	private int uid;
 	private int qunatity;
 	private String date;
+	private String status;
 	
 	public Order() {
 	}
@@ -51,6 +52,12 @@ public class Order extends Product{
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
 

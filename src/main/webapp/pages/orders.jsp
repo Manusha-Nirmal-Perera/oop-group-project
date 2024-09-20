@@ -45,11 +45,11 @@
         </div>
 
         <!-- Product Details -->
-        <div class="w-2/6">
+        <div class="ml-2 w-2/6">
             <h2 class="text-lg font-semibold"><%=o.getName() %></h2>
-            <p class="text-gray-500"><%=o.getCategory() %></p>
+            
             <!-- Order Date -->
-            <p class="text-sm text-gray-400">Order Date: <%=o.getDate() %></p>
+            <p class="text-sm text-gray-400">Placed on: <%=o.getDate() %></p>
         </div>
 
         <!-- Quantity -->
@@ -59,12 +59,12 @@
 
         <!-- Unit Price -->
         <div class="w-1/6 text-center">
-            <span class="text-lg font-semibold"><%=o.getPrice() / o.getQunatity() %></span>
+            <span class="text-lg font-semibold"><%=o.getPrice() %></span>
         </div>
 
         <!-- Total Price -->
         <div class="w-1/6 text-center">
-            <span class="text-lg font-semibold"><%= o.getPrice() %></span>
+            <span class="text-lg font-semibold"><%= o.getPrice() * o.getQunatity() %></span>
         </div>
 
         <!-- Cancel Order -->

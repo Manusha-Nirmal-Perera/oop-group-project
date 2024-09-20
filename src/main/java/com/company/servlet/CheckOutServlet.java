@@ -30,8 +30,6 @@ public class CheckOutServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try(PrintWriter out = response.getWriter()){
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 			User user = (User) request.getSession().getAttribute("user");
 			if(cart_list != null && user!=null) {
@@ -41,7 +39,6 @@ public class CheckOutServlet extends HttpServlet {
 					order.setId(c.getId());
 					order.setUid(user.getId());
 					order.setQunatity(c.getQuantity());
-					order.setDate(formatter.format(date));
 					
 					OrderDao oDao = new OrderDao(DbCon.getConnection());
 					boolean result = oDao.insertOrder(order);

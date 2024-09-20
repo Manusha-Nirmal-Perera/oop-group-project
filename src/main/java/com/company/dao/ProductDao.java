@@ -45,7 +45,7 @@ public class ProductDao {
         List<Product> item = new ArrayList<>();
         try {
 
-            query = "select * from products";
+            query = "SELECT * FROM products ORDER BY category";
             pst = this.con.prepareStatement(query);
             rs = pst.executeQuery();
 

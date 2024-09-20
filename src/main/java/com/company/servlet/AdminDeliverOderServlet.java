@@ -10,29 +10,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.company.connection.DbCon;
-import com.company.dao.UserDao;
+import com.company.dao.OrderDao;
 
-
-@WebServlet("/admin-del-user")
-public class AdminDeleteUser extends HttpServlet {
+@WebServlet("/admin-deliver-order")
+public class AdminDeliverOderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		
 		try {
-			UserDao udao = new UserDao(DbCon.getConnection());
-			boolean result = udao.deleteUser(id);
-			if(result) {
-				request.getSession().setAttribute("alertMessage", "User Deleted");
+			OrderDao odao = new OrderDao(DbCon.getConnection());
+			boolean res = odao.adminDeliverOrder(id);
+			if(res) {
+				request.getSession().setAttribute("alertMessage", "Order delivered");
                 request.getSession().setAttribute("alertType", "success");
 			}else {
 				request.getSession().setAttribute("alertMessage", "Something went wrong..!");
                 request.getSession().setAttribute("alertType", "error");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			
 			e.printStackTrace();
 		}
-		response.sendRedirect("adminpanel/users.jsp");
+		response.sendRedirect("adminpanel/orders.jsp");
 	}
+
 }

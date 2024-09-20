@@ -64,12 +64,13 @@ public class UserDao {
             if(rs.next()){
               	result = false;
             }else {
-            	query = "INSERT INTO users(firstName, lastName, email, password) values (?, ?, ?, ?)";
+            	query = "INSERT INTO users(firstName, lastName, email, password, registered_at) values (?, ?, ?, ?, ?)";
                 pst = this.con.prepareStatement(query);
                 pst.setString(1, user.getfName());
                 pst.setString(2, user.getlName());
                 pst.setString(3, user.getEmail());
                 pst.setString(4, user.getPassword());
+                pst.setString(5, user.getRegisteredDate());
                 pst.executeUpdate();
                 result = true;
             }
@@ -143,23 +144,23 @@ public class UserDao {
 		return res;
 	}
 
-//	public User getUserByID(int id) {
-//		User u = new User();
-//		try {
-//			query = "SELECT* FROM users WHERE id=?";
-//            pst = this.con.prepareStatement(query);
-//            pst.setInt(1, id);
-//            rs = pst.executeQuery();
-//            
-//            if(rs.next()){
-//                u.setfName(rs.getString("firstName"));
-//                u.setlName(rs.getString("lastName"));
-//                u.setEmail(rs.getString("email"));
-//                u.setPhone(rs.getString("phone"));
-//            }
-//	    } catch (SQLException e) {	    	
-//	    	e.printStackTrace();
-//	    }
-//		return u;
-//	}
+	public User getUserByID(int id) {
+		User u = new User();
+		try {
+			query = "SELECT* FROM users WHERE id=?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                u.setfName(rs.getString("firstName"));
+                u.setlName(rs.getString("lastName"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone(rs.getString("phone"));
+            }
+	    } catch (SQLException e) {	    	
+	    	e.printStackTrace();
+	    }
+		return u;
+	}
 }

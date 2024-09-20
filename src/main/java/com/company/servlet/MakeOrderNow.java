@@ -24,8 +24,6 @@ public class MakeOrderNow extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
 
             User user = (User) request.getSession().getAttribute("user");
 
@@ -41,7 +39,6 @@ public class MakeOrderNow extends HttpServlet {
                 orderModel.setId(Integer.parseInt(productId));
                 orderModel.setUid(user.getId());
                 orderModel.setQunatity(productQuantity);
-                orderModel.setDate(formatter.format(date));
 
                 OrderDao orderDao = new OrderDao(DbCon.getConnection());
                 boolean result = orderDao.insertOrder(orderModel);
