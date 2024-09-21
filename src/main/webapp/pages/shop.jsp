@@ -2,6 +2,7 @@
 <%@page import="com.company.dao.ProductDao"%>
 <%@page import="com.company.connection.DbCon"%>
 <%@page import="com.company.modal.*"%>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -9,7 +10,8 @@
 <%
 	ProductDao pd = new ProductDao(DbCon.getConnection());
 	List<Product> products = pd.getAllProducts();
-	
+	DecimalFormat dcf = new DecimalFormat("###,###,###.##");
+	request.setAttribute("dcf", dcf);
 %>
 	
 	
@@ -88,11 +90,11 @@
 						%>
 	                        <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
 	    						<div class="w-72 h-48 flex justify-center items-center bg-gray-200">
-	        						<img src="../components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full object-contain">
+	        						<img src="../components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
 	    						</div>
 	    						<div class="p-4">
 	    						    <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
-	    						    <p class="text-gray-600">LKR <%= p.getPrice() %></p>
+	    						    <p class="text-gray-600">LKR <%= dcf.format(p.getPrice()) %></p>
 	    						     
 	    						    <a href="../add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
 	    						        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>

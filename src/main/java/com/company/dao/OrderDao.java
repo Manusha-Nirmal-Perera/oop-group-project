@@ -151,8 +151,39 @@ public class OrderDao {
             result = true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.print(e.getMessage());
         }
 		return result;
+	}
+//	method to count all the no of orders
+	public int getOrderCount() {
+		int count = 0;
+		try {
+			query = "SELECT COUNT(*) FROM orders";
+			pst = this.con.prepareStatement(query);
+			rs = pst.executeQuery();
+			
+			if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+		}catch(Exception e) {
+			e.printStackTrace();;
+		}
+		return count;
+	}
+//	method to get the total earning from the sales 
+	public double getTotalSales() {
+		double amount = 0;
+		try {
+			query = "SELECT SUM(o.o_quantity * p.price) FROM orders o, products p Where o.p_id = p.id";
+			pst = this.con.prepareStatement(query);
+			rs = pst.executeQuery();
+			
+			if (rs.next()) {
+				amount = rs.getDouble(1);
+	        }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return amount;
 	}
 }

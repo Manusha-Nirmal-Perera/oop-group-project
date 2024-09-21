@@ -8,7 +8,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@page import="com.company.connection.DbCon"%>
 <%
-	DecimalFormat dcf = new DecimalFormat("#.##");
+	DecimalFormat dcf = new DecimalFormat("###,###,###.##");
 	request.setAttribute("dcf", dcf);
 	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 	List<Cart> cartProduct = null;
@@ -27,12 +27,12 @@
     <div class="container mx-auto flex justify-between items-center">
         <a href="#" class="text-white text-2xl font-bold">Evermart</a>
         <div class="flex space-x-4">
-            <a href="home.jsp" class="text-gray-300 hover:text-white">Home</a>
-            <a href="shop.jsp" class="text-gray-300 hover:text-white">Shop</a>
-            <a href="orders.jsp" class="text-gray-300 hover:text-white">Orders</a>
-            <a href="myprofile.jsp" class="text-gray-300 hover:text-white">MyProfile</a>
-            <a href="about.jsp" class="text-gray-300 hover:text-white">About</a>
-            <a href="contact.jsp" class="text-gray-300 hover:text-white">Contact</a>
+            <a id="home-nav" href="home.jsp" class="text-gray-300 hover:text-white">Home</a>
+            <a id="shop-nav" href="shop.jsp" class="text-gray-300 hover:text-white">Shop</a>
+            <a id="orders-nav" href="orders.jsp" class="text-gray-300 hover:text-white">Orders</a>
+            <a id="myprofile-nav" href="myprofile.jsp" class="text-gray-300 hover:text-white">MyProfile</a>
+            <a id="about-nav" href="about.jsp" class="text-gray-300 hover:text-white">About</a>
+            <a id="contact-nav" href="contact.jsp" class="text-gray-300 hover:text-white">Contact</a>
             <!-- Cart Button -->
             <button id="cartButton" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800" type="button">
                   <i class="fas fa-shopping-cart"></i><span class="bg-red-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">${cart_list != null ? cart_list.size() : 0}</span>
@@ -57,7 +57,7 @@
         	if(cart_list != null){
         		for(Cart c: cartProduct){
         %>
-        
+        		<div class="bg-gray-100 hover:bg-gray-300">
         			<form method="post" action="../make-order-now" class="flex items-center justify-between space-x-4 mb-4">
         				<input type="hidden" name="cpID" value="<%= c.getId()%>">
         			    <img class="w-12 h-12 object-cover" src="../components/images/products/<%= c.getImage() %>" alt="Product Image">
@@ -75,10 +75,12 @@
         			        <a href="../qty-inc-dec?action=inc&id=<%= c.getId() %>" class="bg-gray-300 text-gray-800 px-2 py-1 rounded">+</a>
         			    </div>
         			    <a class="text-red-600 font-bold" href="../rm-from-cart?id=<%=c.getId() %>">Remove</a>
-       			 		<input type="submit" class="text-blue-600 font-bold" value="Buy">
+       			 		<input type="submit" class="bg-gray-100 text-blue-600 font-bold" value="Buy">
         			</form>
 
         			<hr class="my-4">
+        		</div>
+        			
 		<%		
         		}
         	}

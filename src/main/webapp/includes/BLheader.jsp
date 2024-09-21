@@ -8,10 +8,10 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-white text-2xl font-bold">Evermart</a>
             <div class="flex space-x-4">
-                <a href="home.jsp" class="text-gray-300 hover:text-white">Home</a>
-                <a href="shop.jsp" class="text-gray-300 hover:text-white">Shop</a>
-                <a href="about.jsp" class="text-gray-300 hover:text-white">About</a>
-                <a href="contact.jsp" class="text-gray-300 hover:text-white">Contact</a>
+                <a id="home-nav" href="home.jsp" class="text-gray-300 hover:text-white items-center flex ">Home</a>
+                <a id="shop-nav" href="shop.jsp" class="text-gray-300 hover:text-white items-center flex">Shop</a>
+                <a id="about-nav" href="about.jsp" class="text-gray-300 hover:text-white items-center flex">About</a>
+                <a id="contact-nav" href="contact.jsp" class="text-gray-300 hover:text-white items-center flex">Contact</a>
                 <!-- Login Button -->
                 <button id="login-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                     Login

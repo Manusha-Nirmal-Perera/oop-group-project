@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const signupCloseBtn = document.getElementById('signup-close-btn');
 	const regButton = document.getElementById('reg-btn');
 	const tncCheckbox = document.getElementById('tnc');
+	
 
 	// Show Login Modal
 	loginBtn.addEventListener('click', function() {
@@ -84,6 +85,26 @@ document.addEventListener('DOMContentLoaded', function() {
 	else{
 		regButton.disabled=true;
 	}
+	
+	// adding the navigation effect
+	function addNavEffect(targetEl){
+		targetEl.classList.add("font-bold");
+		targetEl.classList.add("text-red-500");
+		targetEl.classList.add("hover:text-red-600");
+	}
+	if (window.location.pathname.endsWith('home.jsp')) {
+	    const targetEl = document.getElementById('home-nav');
+		addNavEffect(targetEl);
+	} else if (window.location.pathname.endsWith('about.jsp')) {
+	    const targetEl = document.getElementById('about-nav');
+	    addNavEffect(targetEl);
+	} else if (window.location.pathname.endsWith('contact.jsp')) {
+	    const targetEl = document.getElementById('contact-nav');
+	    addNavEffect(targetEl);
+	} else if (window.location.pathname.endsWith('shop.jsp')) {
+	    const targetEl = document.getElementById('shop-nav');
+	    addNavEffect(targetEl);
+	} else{}
 
 });
 

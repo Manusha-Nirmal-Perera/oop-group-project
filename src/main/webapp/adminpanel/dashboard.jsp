@@ -1,4 +1,16 @@
-
+ <%@page import="com.company.connection.DbCon"%>
+ <%@page import="com.company.dao.*"%>
+ <%@ page import="java.text.DecimalFormat" %>
+<%
+	OrderDao odao = new OrderDao(DbCon.getConnection());
+	UserDao udao = new UserDao(DbCon.getConnection());
+	int orderCount = odao.getOrderCount();
+	int userCount = udao.getUserCount();
+	double totalSales = odao.getTotalSales();
+	DecimalFormat dcf = new DecimalFormat("###,###.##");
+	request.setAttribute("dcf", dcf);
+	
+%>
 
 <%@ include file="./includes/headernav.jsp" %>
 
@@ -17,7 +29,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold">Total Sales</h2>
-                        <p class="text-gray-700 text-lg">LKR 145,000</p>
+                        <p class="text-gray-700 text-lg">LKR <%=dcf.format(totalSales)%></p>
                     </div>
                 </div>
                 <!-- Card 2: New Orders -->
@@ -27,7 +39,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold">New Orders</h2>
-                        <p class="text-gray-700 text-lg">150</p>
+                        <p class="text-gray-700 text-lg"><%=orderCount %></p>
                     </div>
                 </div>
                 <!-- Card 3: Users -->
@@ -37,7 +49,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold">Users</h2>
-                        <p class="text-gray-700 text-lg">1,200</p>
+                        <p class="text-gray-700 text-lg"><%=userCount %></p>
                     </div>
                 </div>
                 <!-- Card 4: Reports -->

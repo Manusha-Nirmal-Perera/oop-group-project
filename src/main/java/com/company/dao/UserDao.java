@@ -163,4 +163,21 @@ public class UserDao {
 	    }
 		return u;
 	}
+//	method to get the user count
+	public int getUserCount() {
+		int count=0;
+		try {
+			query = "SELECT COUNT(*) FROM users";
+			pst = this.con.prepareStatement(query);
+			rs = pst.executeQuery();
+				
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+				e.printStackTrace();
+		}
+		return count;
+		
+	}
 }

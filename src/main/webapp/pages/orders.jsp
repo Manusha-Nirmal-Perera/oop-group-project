@@ -4,7 +4,11 @@
 <%@page import="com.company.dao.*"%>
 <%@page import="com.company.modal.*"%>
 <%@page import="com.company.connection.*"%>
-<% %>
+<%@ page import="java.text.DecimalFormat" %>
+<% 
+	DecimalFormat dcf = new DecimalFormat("###,###,###.##");
+	request.setAttribute("dcf", dcf);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,11 +41,11 @@
 			if(orders != null){
 				for(Order o:orders){%>
 
-<div class="bg-white shadow-md rounded-lg p-4 mb-6">
+<div class="bg-gray-100 hover:bg-gray-300 shadow-md rounded-lg p-4 mb-2">
     <div class="flex items-center justify-between">
         <!-- Product Image -->
         <div class="w-1/5">
-            <img src="../components/images/products/<%=o.getImage() %>" alt="Product Image" class="w-full h-auto rounded-md">
+            <img src="../components/images/products/<%=o.getImage() %>" alt="Product Image" class="w-20 h-20 object-cover rounded-md">
         </div>
 
         <!-- Product Details -->
@@ -59,12 +63,12 @@
 
         <!-- Unit Price -->
         <div class="w-1/6 text-center">
-            <span class="text-lg font-semibold"><%=o.getPrice() %></span>
+            <span class="text-lg font-semibold"><%=dcf.format(o.getPrice())%></span>
         </div>
 
         <!-- Total Price -->
         <div class="w-1/6 text-center">
-            <span class="text-lg font-semibold"><%= o.getPrice() * o.getQunatity() %></span>
+            <span class="text-lg font-semibold"><%= dcf.format(o.getPrice() * o.getQunatity()) %></span>
         </div>
 
         <!-- Cancel Order -->
