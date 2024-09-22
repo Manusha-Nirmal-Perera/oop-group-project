@@ -65,7 +65,7 @@ public class ProductDao {
             System.out.println(e.getMessage());
         }
         return item;
-    }
+    }	
 	
 // method to get the product to show it on orders 
 	 public Product getSingleProduct(int pId) {

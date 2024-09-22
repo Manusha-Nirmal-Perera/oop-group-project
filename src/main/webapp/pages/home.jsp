@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@page import="com.company.connection.DbCon"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page import="java.text.DecimalFormat" %>
+<%@page import="com.company.connection.DbCon"%>
+<%@page import="com.company.modal.Product"%>
+<%@page import="com.company.dao.ProductDao"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,49 +43,53 @@
             </div>
         </div>
     </section>
-
+	<%
+		DecimalFormat dcf = new DecimalFormat("###,###,###.##");
+		request.setAttribute("dcf", dcf);
+	
+		ProductDao pdao = new ProductDao(DbCon.getConnection());
+		
+		List<Product> products = new ArrayList<>();
+		products.add(pdao.getSingleProduct(7));
+		products.add(pdao.getSingleProduct(8));
+		products.add(pdao.getSingleProduct(9));
+		products.add(pdao.getSingleProduct(10));
+		
+		
+	%>
     <!-- Featured Products Section -->
     <section class="bg-gray-100 py-20">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Featured Products</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 <!-- Product Card -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="https://via.placeholder.com/300x200" alt="Product Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Product Name</h3>
-                        <p class="text-gray-600">LKR 29. 99</p>
-                        <a href="#" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">Add to Cart</a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="https://via.placeholder.com/300x200" alt="Product Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Product Name</h3>
-                        <p class="text-gray-600">LKR 29.99</p>
-                        <a href="#" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">Add to Cart</a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="https://via.placeholder.com/300x200" alt="Product Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Product Name</h3>
-                        <p class="text-gray-600">LKR 29.99</p>
-                        <a href="#" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">Add to Cart</a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="https://via.placeholder.com/300x200" alt="Product Image" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Product Name</h3>
-                        <p class="text-gray-600">LKR 29.99</p>
-                        <a href="#" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">Add to Cart</a>
-                    </div>
-                </div>
                 
+                <%
+					if (!products.isEmpty()) {
+						for (Product p : products) {
+				%>
+                <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+	    			<div class="w-72 h-48 flex justify-center items-center bg-gray-200">
+	        			<img src="../components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
+	    			</div>
+	    			<div class="p-4">
+	    			    <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
+	    			    <p class="text-gray-600">LKR <%= dcf.format(p.getPrice()) %></p>
+	    			     
+	    			    <a href="../add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
+	    			        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
+	    			    </a>
+	    			    <a href="../make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
+	    			        Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
+	    			    </a>
+	    			</div>
+				</div>
+				<%
+						}
+					}
+				%>
+
+                                
             </div>
         </div>
     </section>

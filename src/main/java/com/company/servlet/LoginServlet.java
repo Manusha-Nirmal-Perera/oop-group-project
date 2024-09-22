@@ -2,7 +2,9 @@ package com.company.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,11 +26,19 @@ public class LoginServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			String email = request.getParameter("login-email");
 			String password = request.getParameter("login-password");
-
-			UserDao udao = new UserDao(DbCon.getConnection());
+			Connection conn = DbCon.getConnection();
+			UserDao udao = new UserDao(conn);
 			User user = udao.userLogin(email, password);
 			if (user != null) {
 				request.getSession().setAttribute("user", user);
+				
+				List<Order> orders = null;
+		   	 	OrderDao orderDao  = new OrderDao(conn);
+				orders = orderDao.userOrders(user.getId());
+				int noOfOrders = orders!=null? orders.size() : 0;
+				System.out.println(noOfOrders);
+				request.getSession().setAttribute("noOfOrders", noOfOrders);
+				
 				request.getSession().setAttribute("alertMessage", "Logged In");
                 request.getSession().setAttribute("alertType", "success");
 				System.out.println("user logged in");

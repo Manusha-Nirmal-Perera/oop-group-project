@@ -10,6 +10,9 @@
 <%
 	DecimalFormat dcf = new DecimalFormat("###,###,###.##");
 	request.setAttribute("dcf", dcf);
+	
+	Integer totalOrders = (Integer) request.getSession().getAttribute("noOfOrders");
+	
 	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 	List<Cart> cartProduct = null;
 	if (cart_list != null) {
@@ -22,6 +25,9 @@
 		request.setAttribute("cart_list", cart_list);
 	}
 %>
+<%
+
+%>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <nav class="bg-gray-800 p-4">
     <div class="container mx-auto flex justify-between items-center">
@@ -29,13 +35,13 @@
         <div class="flex space-x-4">
             <a id="home-nav" href="home.jsp" class="text-gray-300 hover:text-white">Home</a>
             <a id="shop-nav" href="shop.jsp" class="text-gray-300 hover:text-white">Shop</a>
-            <a id="orders-nav" href="orders.jsp" class="text-gray-300 hover:text-white">Orders</a>
+            <a id="orders-nav" href="orders.jsp" class="text-gray-300 hover:text-white">Orders <span class="bg-red-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full"><%=totalOrders%></span></a>
             <a id="myprofile-nav" href="myprofile.jsp" class="text-gray-300 hover:text-white">MyProfile</a>
             <a id="about-nav" href="about.jsp" class="text-gray-300 hover:text-white">About</a>
             <a id="contact-nav" href="contact.jsp" class="text-gray-300 hover:text-white">Contact</a>
             <!-- Cart Button -->
             <button id="cartButton" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800" type="button">
-                  <i class="fas fa-shopping-cart"></i><span class="bg-red-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">${cart_list != null ? cart_list.size() : 0}</span>
+                  <i class="fas fa-shopping-cart"></i> <span class="bg-red-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">${cart_list != null ? cart_list.size() : 0}</span>
                 
             </button>
             <!-- Sign Out Button -->

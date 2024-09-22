@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.company.modal.User"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +12,12 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800">
-
+    		
    
 	<% 
+	User u = (User) request.getSession().getAttribute("user");
     	if (session.getAttribute("user") != null) {
+
     %>
     		<jsp:include page="../includes/ALheader.jsp" /> 
     <% 
@@ -34,11 +37,11 @@
             <form class="space-y-6" action="#" method="post">
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Your Name</label>
-                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John Doe" required />
+                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter your full name (Eg: Nirmal Perera)" required />
                 </div>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your Email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="name@company.com" required />
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter email (Eg: somone@example.com)" required />
                 </div>
                 <div>
                     <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Type of Inquiry</label>
@@ -52,7 +55,7 @@
                 </div>
                 <div>
                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Your Message</label>
-                    <textarea id="message" name="message" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Write your message here..." required></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your messege" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Write your message here..." required></textarea>
                 </div>
                 
                 <input type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="Send Messege">
