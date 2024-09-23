@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			cartPopup.classList.toggle('hidden');
 			backgroundOverlay.classList.toggle('hidden');    
 		}
+		if (urlParams.has('category')) {
+			addNavEffect(document.getElementById('shop-nav'));	   
+		}
 	};
 	cartModalPopup();
 	

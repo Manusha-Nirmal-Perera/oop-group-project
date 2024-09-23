@@ -26,19 +26,10 @@ public class LoginServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			String email = request.getParameter("login-email");
 			String password = request.getParameter("login-password");
-			Connection conn = DbCon.getConnection();
-			UserDao udao = new UserDao(conn);
+			UserDao udao = new UserDao(DbCon.getConnection());
 			User user = udao.userLogin(email, password);
 			if (user != null) {
-				request.getSession().setAttribute("user", user);
-				
-				List<Order> orders = null;
-		   	 	OrderDao orderDao  = new OrderDao(conn);
-				orders = orderDao.userOrders(user.getId());
-				int noOfOrders = orders!=null? orders.size() : 0;
-				System.out.println(noOfOrders);
-				request.getSession().setAttribute("noOfOrders", noOfOrders);
-				
+				request.getSession().setAttribute("user", user);				
 				request.getSession().setAttribute("alertMessage", "Logged In");
                 request.getSession().setAttribute("alertType", "success");
 				System.out.println("user logged in");

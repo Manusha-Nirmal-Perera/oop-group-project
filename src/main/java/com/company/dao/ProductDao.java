@@ -65,7 +65,89 @@ public class ProductDao {
             System.out.println(e.getMessage());
         }
         return item;
-    }	
+    }
+//	method to get all products by name
+	public List<Product> getAllProductsByName(String prName) {
+		List<Product> item = new ArrayList<>();
+        try {
+
+        	String query = "SELECT * FROM products WHERE name LIKE ?";
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, "%" + prName + "%");
+        	rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	Product pr = new Product();
+                pr.setId(rs.getInt("id"));
+                pr.setName(rs.getString("name"));
+                pr.setCategory(rs.getString("category"));
+                pr.setPrice(rs.getDouble("price"));
+                pr.setImage(rs.getString("image"));
+                
+                item.add(pr);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return item;
+	}
+//	method to get products by category
+	public List<Product> getAllProductsByCategory(String category) {
+        List<Product> item = new ArrayList<>();
+        try {
+
+            query = "SELECT * FROM products WHERE category = ?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, category);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	Product pr = new Product();
+                pr.setId(rs.getInt("id"));
+                pr.setName(rs.getString("name"));
+                pr.setCategory(rs.getString("category"));
+                pr.setPrice(rs.getDouble("price"));
+                pr.setImage(rs.getString("image"));
+                
+                item.add(pr);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return item;
+    }
+//	method to get all products by name and category
+	public List<Product> getAllProductsBySelections(String prName, String category) {
+		List<Product> item = new ArrayList<>();
+        try {
+        	String query = "SELECT * FROM products WHERE category = ? AND name LIKE ?";
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, category);
+        	pst.setString(2, "%" + prName + "%");
+        	rs = pst.executeQuery();
+
+            while (rs.next()) {
+            	Product pr = new Product();
+                pr.setId(rs.getInt("id"));
+                pr.setName(rs.getString("name"));
+                pr.setCategory(rs.getString("category"));
+                pr.setPrice(rs.getDouble("price"));
+                pr.setImage(rs.getString("image"));
+                
+                item.add(pr);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return item;
+	}
+
 	
 // method to get the product to show it on orders 
 	 public Product getSingleProduct(int pId) {
@@ -178,5 +260,6 @@ public class ProductDao {
 			
 			return res;
 		}
+
 }
 

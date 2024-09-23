@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			signupModal.classList.remove('hidden');
 			       
 		}
+		if (urlParams.has('category')) {
+			addNavEffect(document.getElementById('shop-nav'));	   
+		}
 	}
 	formModalPopups();
 

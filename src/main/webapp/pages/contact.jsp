@@ -80,6 +80,6 @@
     <!-- Footer -->
 <jsp:include page="../includes/footer.jsp" />
 
-    <script src="../components/js/script.js"></script>
+    <script src="/ecommerce/components/js/script.js"></script>
 </body>
 </html>

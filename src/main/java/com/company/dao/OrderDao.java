@@ -60,6 +60,27 @@ public class OrderDao {
         return orders;
     }
 	
+//	method to get the total order count of a single user
+	public int getUserOrderCount(int uid) {
+	    int count = 0;
+	    try {
+	        String q = "SELECT COUNT(*) FROM orders WHERE u_id=?";
+	        PreparedStatement ps = con.prepareStatement(q);
+
+	        ps.setInt(1, uid);
+	        ResultSet r = ps.executeQuery();
+
+	        if (r.next()) {
+	            count = r.getInt(1);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println(e.getMessage());
+	    }
+	    return count;
+	}
+
 //	method to handle new orders 
 	public boolean insertOrder(Order model) {
         boolean result = false;
