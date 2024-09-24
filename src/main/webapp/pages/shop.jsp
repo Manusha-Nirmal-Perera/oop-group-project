@@ -51,7 +51,7 @@
         <div class="container mx-auto">
 			<!-- Search Filters -->
 			<form action="/ecommerce/user-filter-products" method="get" id="filterForm">
-			    <div class="flex justify-between items-center mb-10 shadow-lg rounded-full p-2">
+			    <div class="flex justify-between items-center mb-10 shadow-xl hover:bg-gray-100 rounded-full p-2">
 			        <!-- Keyword Search -->
 			        <div class="relative w-full max-w-xs">
 			            <input type="text" name="entered-pr-name" placeholder="Search products by name" class="w-full p-2 border border-gray-300 rounded-full text-center focus:outline-none focus:border-blue-600" id="keywordSearch" autocomplete="off">
@@ -69,7 +69,7 @@
 			        </div>
 			
 			        <!-- Search Button -->
-			        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 shadow-lg">Search</button>
+			        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 shadow-lg"><i class="fas fa-search"></i></button>
 			    </div>
 			</form>
 
@@ -90,7 +90,7 @@
 							if (!products.isEmpty()) {
 								for (Product p : products) {
 						%>
-	                        <div class="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+	                        <div class="bg-gray-100 hover:bg-gray-200 rounded-lg shadow-lg overflow-hidden">
 	    						<div class="w-72 h-48 flex justify-center items-center bg-gray-200">
 	        						<img src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
 	    						</div>

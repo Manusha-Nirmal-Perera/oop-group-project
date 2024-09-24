@@ -51,7 +51,7 @@ public class RegistrationServlet extends HttpServlet {
 			if(result) {
 				response.sendRedirect("pages/home.jsp?register=success");
 			}else {
-				response.sendRedirect("pages/home.jsp?register=fail");
+				response.sendRedirect("pages/home.jsp?register=failed");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
