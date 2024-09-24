@@ -26,7 +26,6 @@ public class LogoutServlet extends HttpServlet {
 			}else {
 				response.sendRedirect("pages/home.jsp");
 			}
-
 		} 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

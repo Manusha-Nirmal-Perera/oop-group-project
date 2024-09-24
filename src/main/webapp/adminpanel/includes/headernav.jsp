@@ -8,18 +8,30 @@
     <title>Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+    	/* Hide scrollbar for all browsers */
+		html {
+		    scrollbar-width: none; /* For Firefox */
+		}
+		
+		body {
+		    overflow: auto;
+		    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+		    scrollbar-width: none;  /* For Firefox */
+		}
+		
+		body::-webkit-scrollbar {
+		    display: none;  /* For Chrome, Safari, and Opera */
+		}
+    </style>
 </head>
 <body class="bg-gray-100">
 <!-- Top Navbar -->
 <nav class="bg-gray-800 p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-white text-2xl font-bold">Admin Panel</a>
-        <div class="flex space-x-4">
-            <a href="dashboard.jsp" class="text-gray-300 hover:text-white">Dashboard</a>
-            <a href="settings.jsp" class="text-gray-300 hover:text-white">Settings</a>
-            <a href="#" class="text-gray-300 hover:text-white">Profile</a>
-            <a href="#" class="text-gray-300 hover:text-white">Logout</a>
-        </div>
+    <div class="container flex justify-between mx-auto">
+        <div class="text-white text-2xl font-bold">EverMart</div>
+        <div class="text-white text-2xl font-bold">AdminPanel</div>
+        <div class="text-white text-2xl font-bold">EverMart</div>
     </div>
 </nav>
 
@@ -66,9 +78,10 @@
                 </a>
             </li>
             <li>
-                <a href="settings.jsp" class="flex items-center text-gray-300 hover:text-white">
-                    <i class="fas fa-cogs mr-2"></i> Settings
+                <a href="adminActivity.jsp" class="flex items-center text-gray-300 hover:text-white">
+                    <i class="fas fa-history mr-2"></i> My Acivity
                 </a>
+
             </li>
         </ul>
     </aside>

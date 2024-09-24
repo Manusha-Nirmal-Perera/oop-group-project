@@ -3,6 +3,7 @@
 <%@page import="com.company.connection.DbCon"%>
 <%@page import="com.company.modal.*"%>
 
+
 <%
 	UserDao udao = new UserDao(DbCon.getConnection());
 	List<User> users = udao.getAllUsers();
@@ -38,8 +39,8 @@
 	                    		<input type="hidden" name="adminuser-id" value="<%= u.getId()%>">
 		                        <td class="py-3 px-6 text-left"><input type="text" name="adminuser-fname" value="<%= u.getfName()%>"></td>
 		                        <td class="py-3 px-6 text-left"><input type="text" name="adminuser-lname" value="<%= u.getlName()%>"></td>
-		                        <td class="py-3 px-6 text-left"><input type="email" name="adminuser-email" value="<%= u.getEmail()%>"></td>
-		                        <td class="py-3 px-6 text-left"><input type="text" name="adminuser-phone" value="<%= u.getPhone()%>"></td>
+		                        <td class="py-3 px-6 text-left"><a href="mailto:<%= u.getEmail()%>"><i class="mx-1 p-1 rounded-lg shadow-lg text-white bg-blue-600 hover:bg-blue-800 fas fa-paper-plane"></i></a> <input type="email" name="adminuser-email" value="<%= u.getEmail()%>"></td>
+		                        <td class="py-3 px-6 text-left"><a href="tel:<%= u.getPhone()%>"><i class="mx-1 p-1 rounded-lg shadow-lg text-white bg-green-600 hover:bg-green-800 fas fa-phone"></i></a> <input type="text" name="adminuser-phone" value="<%= u.getPhone()%>"></td>
 		                        <td class="py-3 px-6 text-center">
 		                            <input type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" value="Save">
 		                            <a href="../admin-del-user?id=<%= u.getId() %>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</a>

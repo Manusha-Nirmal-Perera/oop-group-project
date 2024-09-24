@@ -89,31 +89,56 @@
 
     <!-- Why Shop With Us Section -->
     <section class="text-center">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-6">Why Shop With Us?</h2>
-        <ul class="list-none space-y-4 text-gray-700 leading-relaxed mx-auto w-3/4 sm:w-1/2 text-lg">
-            <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300">
-                <strong>Fast Shipping:</strong> Lightning-fast delivery to your door.
-            </li>
-            <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300">
-                <strong>24/7 Support:</strong> We're here for you around the clock.
-            </li>
-            <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300">
-                <strong>Secure Payments:</strong> Safe and reliable checkout options.
-            </li>
-            <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300">
-                <strong>Satisfaction Guaranteed:</strong> Shop with confidence, we've got your back.
-            </li>
-        </ul>
-    </section>
+    <h2 class="text-4xl font-extrabold text-gray-800 mb-6">Why Shop With Us?</h2>
+    <ul class="list-none space-y-4 text-gray-700 leading-relaxed mx-auto w-3/4 sm:w-1/2 text-lg">
+        <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300 flex items-center">
+            <i class="fas fa-shipping-fast text-gray-600 mr-3"></i>
+            <strong>Fast Shipping:</strong> Lightning-fast delivery to your door.
+        </li>
+        <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300 flex items-center">
+            <i class="fas fa-headset text-gray-600 mr-3"></i>
+            <strong>24/7 Support: </strong> We're here for you around the clock.
+        </li>
+        <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300 flex items-center">
+            <i class="fas fa-lock text-gray-600 mr-3"></i>
+            <strong>Secure Payments: </strong> Safe and reliable checkout options.
+        </li>
+        <li class="bg-white p-4 rounded-lg shadow-md hover:bg-gray-300 flex items-center">
+            <i class="fas fa-smile text-gray-600 mr-3"></i>
+            <strong>Satisfaction : </strong> Shop with confidence, we've got your back.
+        </li>
+        
+    </ul>
+</section>
 
     <!-- Customer Testimonials Section -->
     <section class="text-center">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-6">What Our Customers Say</h2>
-        <div class="bg-gray-100 p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+    <h2 class="text-4xl font-extrabold text-gray-800 mb-6">What Our Customers Say</h2>
+    
+    <!-- Flexbox container for the divs -->
+    <div class="flex justify-between space-x-4 max-w-7xl mx-auto">
+        
+        <!-- First Review -->
+        <div class="bg-gray-100 p-8 rounded-lg shadow-lg w-1/3">
             <p class="text-gray-700 italic text-lg">"Shopping at Evermart was a breeze! The product variety is fantastic, and delivery was super fast."</p>
             <p class="text-right text-gray-600 mt-4">— Jane D.</p>
         </div>
-    </section>
+
+        <!-- Second Review -->
+        <div class="bg-gray-100 p-8 rounded-lg shadow-lg w-1/3">
+            <p class="text-gray-700 italic text-lg">"Great customer service and amazing products! Will definitely shop again."</p>
+            <p class="text-right text-gray-600 mt-4">— John S.</p>
+        </div>
+
+        <!-- Third Review -->
+        <div class="bg-gray-100 p-8 rounded-lg shadow-lg w-1/3">
+            <p class="text-gray-700 italic text-lg">"Affordable prices and great product quality! I recommend Evermart to everyone."</p>
+            <p class="text-right text-gray-600 mt-4">— Sarah W.</p>
+        </div>
+
+    </div>
+</section>
+    
 </main>
 
 	

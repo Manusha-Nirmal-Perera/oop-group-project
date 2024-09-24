@@ -59,6 +59,41 @@ public class OrderDao {
         }
         return orders;
     }
+	// Method to get order by ID
+	public Order getOrderById(int id) {
+	    Order order = null;
+	    try {
+	        String query = "SELECT * FROM orders WHERE o_id = ?";
+	        pst = this.con.prepareStatement(query);
+	        pst.setInt(1, id);
+	        rs = pst.executeQuery();
+
+	        // Check if the result set contains any data
+	        if (rs.next()) {
+	            // Initialize the order object
+	            order = new Order();
+	            
+	            // Fetch the product using the product ID from the result set
+	            ProductDao productDao = new ProductDao(this.con);
+	            int pId = rs.getInt("p_id");
+	            Product product = productDao.getSingleProduct(pId);
+	            
+	            // Set order details from the result set and product data
+	            order.setOrderId(rs.getInt("o_id"));
+	            order.setUid(rs.getInt("u_id"));
+	            order.setQunatity(rs.getInt("o_quantity"));
+	            order.setDate(rs.getString("o_date"));
+	            order.setName(product.getName());
+	            order.setPrice(product.getPrice());
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println(e.getMessage());
+	    }
+	    System.out.println(order);
+	    return order;
+	}
 	
 //	method to get the total order count of a single user
 	public int getUserOrderCount(int uid) {
@@ -131,6 +166,7 @@ public class OrderDao {
     public void cancelOrder(int id) {
         //boolean result = false;
         try {
+        	System.out.println(id);
             query = "DELETE FROM orders WHERE o_id=?";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, id);

@@ -153,6 +153,7 @@ public class UserDao {
             rs = pst.executeQuery();
             
             if(rs.next()){
+            	u.setId(rs.getInt(id));
                 u.setfName(rs.getString("firstName"));
                 u.setlName(rs.getString("lastName"));
                 u.setEmail(rs.getString("email"));

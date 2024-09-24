@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.company.connection.DbCon;
+import com.company.dao.AdminDao;
 import com.company.dao.ProductDao;
+import com.company.modal.AdminActivity;
+import com.company.modal.Product;
 
 /**
  * Servlet implementation class RemoveProductServlet
@@ -24,14 +27,26 @@ public class RemoveProductServlet extends HttpServlet {
 		
 		try {
 			ProductDao pDAO = new ProductDao(DbCon.getConnection());
+			Product removedProduct = pDAO.getSingleProduct(prID);
 			boolean result = pDAO.deleteItem(prID);
+			
+			AdminActivity adminActivity = new AdminActivity();
+			AdminDao aDao = new AdminDao(DbCon.getConnection());
+			adminActivity.setActType("Removing existing product");
 			if(result) {
+				adminActivity.setDescription("Product name: " + removedProduct.getName() + " Category: " + removedProduct.getCategory() +" Price: " + removedProduct.getPrice());
+				adminActivity.setStatus("Successful");
+				
 				request.getSession().setAttribute("alertMessage", "Item Deleted");
                 request.getSession().setAttribute("alertType", "success");
 			}else {
+				adminActivity.setDescription("Product " + removedProduct.getName() + " deletion failed");
+				adminActivity.setStatus("Failed");
+				
 				request.getSession().setAttribute("alertMessage", "Something went wrong !");
                 request.getSession().setAttribute("alertType", "error");
 			}
+			aDao.insetIntoAdminActivity(adminActivity);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,6 @@
  <%@page import="com.company.connection.DbCon"%>
  <%@page import="com.company.dao.*"%>
+<%@page import="com.company.modal.User" %>
  <%@ page import="java.text.DecimalFormat" %>
 <%
 	OrderDao odao = new OrderDao(DbCon.getConnection());
@@ -12,8 +13,8 @@
 	
 %>
 
-<%@ include file="./includes/headernav.jsp" %>
-
+<jsp:include page="includes/headernav.jsp" /> 
+	
     <!-- Main content (Dashboard) -->
     <main class="flex-1 p-6 bg-gray-100">
         <div class="container mx-auto">
@@ -78,7 +79,6 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-				
                             <tr>
                                 <td class="py-2 text-center">1</td>
                                 <td class="py-2 text-center">1</td>
@@ -143,4 +143,5 @@
 
         </div>
     </main>
+    <%@ include file="../includes/alert.jsp" %>
 <%@ include file="./includes/ending.jsp" %>

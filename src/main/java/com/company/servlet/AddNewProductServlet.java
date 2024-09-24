@@ -16,13 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.company.connection.DbCon;
+import com.company.dao.AdminDao;
 import com.company.dao.ProductDao;
+import com.company.modal.AdminActivity;
 import com.company.modal.Product;
 
 
 @WebServlet("/admin-add-product")
 @MultipartConfig
-public class AddNewPeoductServlet extends HttpServlet {
+public class AddNewProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,13 +68,24 @@ public class AddNewPeoductServlet extends HttpServlet {
 		     try {
 				productdao = new ProductDao(DbCon.getConnection());
 				boolean result = productdao.saveProduct(product);
+				
+				AdminActivity adminActivity = new AdminActivity();
+				AdminDao aDao = new AdminDao(DbCon.getConnection());
+				adminActivity.setActType("Adding new product");
 				if(result) {
+					adminActivity.setDescription("Product name: " + product.getName() + " Category: " + product.getCategory() +" Price: " + product.getPrice());
+					adminActivity.setStatus("Successful");
+					
 					request.getSession().setAttribute("alertMessage", "Item added");
 	                request.getSession().setAttribute("alertType", "success");
 				}else {
+					adminActivity.setDescription("");
+					adminActivity.setStatus("Failed");
+					
 					request.getSession().setAttribute("alertMessage", "Something went wrong !");
 			        request.getSession().setAttribute("alertType", "error");
 				}
+				aDao.insetIntoAdminActivity(adminActivity);
 		     } catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 		     }
