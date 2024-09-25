@@ -51,8 +51,9 @@
         <div class="container mx-auto">
 			<!-- Search Filters -->
 			<form action="/ecommerce/user-filter-products" method="get" id="filterForm">
-			    <div class="flex justify-between items-center mb-10 shadow-xl hover:bg-gray-100 rounded-full p-2">
+			    <div class="flex justify-between items-center mb-10 shadow-md hover:bg-gray-100 rounded-full p-2">
 			        <!-- Keyword Search -->
+			        <!--  -->
 			        <div class="relative w-full max-w-xs">
 			            <input type="text" name="entered-pr-name" placeholder="Search products by name" class="w-full p-2 border border-gray-300 rounded-full text-center focus:outline-none focus:border-blue-600" id="keywordSearch" autocomplete="off">
 			        </div>
@@ -90,18 +91,18 @@
 							if (!products.isEmpty()) {
 								for (Product p : products) {
 						%>
-	                        <div class="bg-gray-100 hover:bg-gray-200 rounded-lg shadow-lg overflow-hidden">
-	    						<div class="w-72 h-48 flex justify-center items-center bg-gray-200">
+	                        <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-lg overflow-hidden">
+	    						<div class="w-72 h-48 flex justify-center items-center">
 	        						<img src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
 	    						</div>
 	    						<div class="p-4">
-	    						    <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
-	    						    <p class="text-gray-600">LKR <%= dcf.format(p.getPrice()) %></p>
+	    						    <h4 class="text-xl font-bold text-gray-900"><%= p.getName() %></h4>
+	    						    <p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
 	    						     
-	    						    <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
+	    						    <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">
 	    						        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
 	    						    </a>
-	    						    <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
+	    						    <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 block text-center">
 	    						        Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
 	    						    </a>
 	    						</div>

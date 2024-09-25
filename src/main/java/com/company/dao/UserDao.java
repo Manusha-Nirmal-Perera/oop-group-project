@@ -36,7 +36,8 @@ public class UserDao {
                 	user.setfName(rs.getString("firstName"));
                 	user.setlName(rs.getString("lastName"));
                 	user.setEmail(rs.getString("email"));
-                	user.setPhone("phone");
+                	user.setPhone(rs.getString("phone"));
+                	user.setAddress(rs.getString("address"));
                 	user.setPassword("password");
                 	user.setRegisteredDate(rs.getString("registered_at"));
                 	user.setImage(rs.getString("image"));
@@ -147,17 +148,20 @@ public class UserDao {
 	public User getUserByID(int id) {
 		User u = new User();
 		try {
-			query = "SELECT* FROM users WHERE id=?";
+			query = "SELECT * FROM users WHERE id=?";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, id);
             rs = pst.executeQuery();
             
             if(rs.next()){
-            	u.setId(rs.getInt(id));
+            	u.setId(rs.getInt("id"));
                 u.setfName(rs.getString("firstName"));
                 u.setlName(rs.getString("lastName"));
                 u.setEmail(rs.getString("email"));
                 u.setPhone(rs.getString("phone"));
+                u.setImage(rs.getString("Image"));
+                u.setAddress(rs.getString("address"));
+                u.setRegisteredDate(rs.getString("registered_at"));
             }
 	    } catch (SQLException e) {	    	
 	    	e.printStackTrace();
@@ -180,5 +184,24 @@ public class UserDao {
 		}
 		return count;
 		
+	}
+
+	public boolean editUserInfo(User user) {
+		boolean result = false;
+		try {
+			query = "UPDATE users SET email=?, phone=?, address=?, Image=? WHERE id=?";
+			pst = this.con.prepareStatement(query);
+			pst.setString(1, user.getEmail());
+			pst.setString(2, user.getPhone());
+			pst.setString(3, user.getAddress());
+			pst.setString(4, user.getImage());
+			pst.setInt(5, user.getId());
+			
+			int rowsAffected = pst.executeUpdate();
+			result = rowsAffected > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

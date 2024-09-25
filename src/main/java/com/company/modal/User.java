@@ -6,9 +6,11 @@ public class User {
 	private String lName;
 	private String email;
 	private String phone;
+	private String address;
 	private String password;
 	private String registeredDate;
 	private String image;
+
 
 	public User() {
 	}
@@ -75,5 +77,11 @@ public class User {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
