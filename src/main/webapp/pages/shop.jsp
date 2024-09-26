@@ -100,7 +100,7 @@
 							         <div class="flex items-center justify-between">
 							        	<p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
 							        
-								        <a href="" class="text-gray-500 hover:text-red-500">
+								        <a href="/ecommerce/user-add-to-wishlist?prid=<%= p.getId()%>" class="text-gray-500 hover:text-red-500">
 								            <i class="fas fa-heart"></i> <!-- Heart icon -->
 								        </a>
 							    	</div>

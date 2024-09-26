@@ -149,7 +149,7 @@ public class ProductDao {
 	}
 
 	
-// method to get the product to show it on orders 
+// method to get the product
 	 public Product getSingleProduct(int pId) {
 		 Product row = null;
 	        try {

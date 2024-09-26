@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.company.modal.*"%>
+<%@page import="java.util.List" %>
+<%@page import="java.text.DecimalFormat" %>
+<%@page import="com.company.connection.DbCon"%>
+<%@page import="com.company.modal.*"%>
+<%@page import="com.company.dao.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,8 +136,16 @@
         </form>
     </div>
 </div>
-
+	
 <!-- wishlist modal -->
+
+	<%
+		WishlistDao wlDao = new WishlistDao(DbCon.getConnection());
+		ProductDao pDao = new ProductDao(DbCon.getConnection());
+		List<WishlistItem>  wishlistItems = wlDao.getAllWishlistItems(u.getId());
+		DecimalFormat dcf = new DecimalFormat("###,###,###.##");
+		request.setAttribute("dcf", dcf);
+	%>
 	<div id="wishlist-popup" class="hidden fixed inset-0 flex justify-center items-center z-10">
 	    <!-- Popup Card -->
 	    <div class="bg-white rounded-lg shadow-lg max-h-screen overflow-y-auto p-6 relative">
@@ -148,38 +160,48 @@
 	        <!-- Wishlist Title -->
 	        <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">My Wishlist</h2>
 	        
-	        <!-- Wishlist Items (repeat for each item) -->
+	        <!-- Wishlist Item-->
+	        <%
+		        if (!wishlistItems.isEmpty()) {
+					for (WishlistItem wl : wishlistItems) {
+						Product p = pDao.getSingleProduct(wl.getId());
+
+	        %>
 	        <div class="bg-gray-50 shadow-md p-1 pr-2 mb-2 rounded-lg">
-            <form method="post" action="/ecommerce/make-order-now" class="flex items-center justify-between space-x-4 mb-4">
-                <input type="hidden" name="cpID" value="">
-                <img class="w-12 h-12 object-cover" src="" alt="Product Image">
-                <div class="flex-1">
-                    <h3 class="font-medium text-gray-900">Product Name</h3>
-                    <div class="flex items-center space-x-2 mt-2">
-                        <span class="text-sm text-gray-600">23,255.90</span>
-                        <span class="text-sm text-gray-900 font-semibold">Total: 23,255.90</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <a href="/ecommerce/qty-inc-dec?action=dec&id=productID" 
-                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">-</a>
-                    <input type="text" name="cpQty" class="font-medium w-6 text-center text-gray-900" value="2" readonly>
-                    <a href="/ecommerce/qty-inc-dec?action=inc&id=productID" 
-                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">+</a>
-                </div>
-                <a href="/ecommerce/rm-from-cart?id=productID" 
-                   class="bg-gray-200 text-red-500 font-bold hover:bg-red-500 hover:text-white px-2 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i></a>
-                <button type="submit" 
-                       class="bg-blue-100 text-blue-600 font-bold hover:bg-blue-600 hover:text-white px-4 py-1 rounded cursor-pointer transition ease-in-out duration-300" >
-                       <i class="fas fa-shopping-cart"></i>
-				</button>
-            </form>
-        </div>
+	            <form method="post" action="/ecommerce/make-order-now" class="flex items-center justify-between space-x-4 mb-4">
+	                <input type="hidden" name="cpID" value="">
+	                <img class="w-12 h-12 object-cover" src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Product Image">
+	                <div class="flex-1">
+	                    <h3 class="font-medium text-gray-900"><%=p.getName() %></h3>
+	                    <div class="flex items-center space-x-2 mt-2">
+	                        <span class="text-sm text-gray-600"><%=dcf.format(p.getPrice()) %></span>
+	                        <span class="text-sm text-gray-900 font-semibold"><%=dcf.format(p.getPrice() * wl.getWLquantity()) %></span>
+	                    </div>
+	                </div>
+	                <div class="flex items-center space-x-2">
+	                    <a href="/ecommerce/qty-inc-dec?action=dec&id=productID" 
+	                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">-</a>
+	                    <input type="text" name="cpQty" class="font-medium w-6 text-center text-gray-900" value="2" readonly>
+	                    <a href="/ecommerce/qty-inc-dec?action=inc&id=productID" 
+	                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">+</a>
+	                </div>
+	                <a href="/ecommerce/rm-from-cart?id=productID" 
+	                   class="bg-gray-200 text-red-500 font-bold hover:bg-red-500 hover:text-white px-2 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i></a>
+	                <button type="submit" 
+	                       class="bg-blue-100 text-blue-600 font-bold hover:bg-blue-600 hover:text-white px-4 py-1 rounded cursor-pointer transition ease-in-out duration-300" >
+	                       <i class="fas fa-cart-plus"></i>
+					</button>
+	            </form>
+	        </div>
+	        <%
+						}
+			        }
+	        %>
 	    </div>
 	</div>
 	
     <%@ include file="../includes/footer.jsp" %>
     <script src="/ecommerce/components/js/userprofile.js"></script>
-    	<%@ include file="../includes/alert.jsp" %>
+    <%@ include file="../includes/alert.jsp" %>
 </body>
 </html>
