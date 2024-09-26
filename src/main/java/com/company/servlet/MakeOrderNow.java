@@ -57,6 +57,8 @@ public class MakeOrderNow extends HttpServlet {
                     out.println("order failed");
                 }
             } else {
+            	request.getSession().setAttribute("alertMessage", "You need to login first before placing an order");
+                request.getSession().setAttribute("alertType", "info");
                 response.sendRedirect("pages/home.jsp");
             }
 

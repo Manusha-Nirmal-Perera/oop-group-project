@@ -53,7 +53,7 @@
 </nav>
 
 <!-- Background Overlay -->
-<div id="backgroundOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10"></div>
+<div style="backdrop-filter: blur(1px);"id="backgroundOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10"></div>
 
 <!-- Cart Popup -->
 <div id="cartPopup" style="min-width: 750px;" class="hidden absolute right-0 mt-2 w-75 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden mr-4 z-10"> 

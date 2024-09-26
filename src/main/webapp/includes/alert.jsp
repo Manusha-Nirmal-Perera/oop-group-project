@@ -7,11 +7,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     Swal.fire({
-        title: '<%= alertType.equals("success") ? "Success" : alertType.equals("error") ? "Oops..." : alertType.equals("warning") ? "Watch Out!" : "Just So You Know" %>',
+        title: '<%= alertType.equals("success") ? "Success" : alertType.equals("error") ? "Oops..." : alertType.equals("warning") ? "Watch Out!" : alertType.equals("info") ? "Just So You Know" : "Got a Question?" %>',
         text: '<%= alertMessage %>',
         icon: '<%= alertType %>',
         confirmButtonText: 'OK'
     });
+
 
     </script>
 <% 

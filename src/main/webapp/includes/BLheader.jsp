@@ -52,7 +52,7 @@
 <!-- Signup Modal -->
 <div id="signup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
     <div class="bg-white p-6 rounded-lg shadow-md max-w-sm w-full relative">
-        <form method="post" action="/ecommerce/user-register" onsubmit="checkPassword()">
+        <form method="post" action="/ecommerce/user-register">
             <!-- Close Button inside the form -->
             <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600" id="signup-close-btn">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

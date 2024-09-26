@@ -204,4 +204,20 @@ public class UserDao {
 		}
 		return result;
 	}
+
+	public boolean ChangePassword(int uid, String newPassword) {
+		boolean result = false;
+		try {
+			query = "UPDATE users SET password=? WHERE id=?";
+			pst = this.con.prepareStatement(query);
+			pst.setString(1, newPassword);
+			pst.setInt(2, uid);
+			
+			int rowsAffected = pst.executeUpdate();
+			result = rowsAffected > 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -84,29 +84,36 @@
                    
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 	                    <%
-	                    List<Product> products = (List<Product>) request.getAttribute("products");
+	                    	List<Product> products = (List<Product>) request.getAttribute("products");
 	                    	if(products == null){
 	                    		products = pd.getAllProducts();
 	                    	}
 							if (!products.isEmpty()) {
 								for (Product p : products) {
 						%>
-	                        <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-lg overflow-hidden">
-	    						<div class="w-72 h-48 flex justify-center items-center">
-	        						<img src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
-	    						</div>
-	    						<div class="p-4">
-	    						    <h4 class="text-xl font-bold text-gray-900"><%= p.getName() %></h4>
-	    						    <p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
-	    						     
-	    						    <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">
-	    						        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
-	    						    </a>
-	    						    <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 block text-center">
-	    						        Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
-	    						    </a>
-	    						</div>
-							</div>  
+	                        <div class="bg-gray-100 rounded-lg shadow-md hover:shadow-lg overflow-hidden relative"> <!-- Added 'relative' to this parent div -->
+							    <div class="w-72 h-48 flex justify-center items-center">
+							        <img src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Blender" class="max-w-full max-h-full rounded object-contain">
+							    </div>
+							    <div class="p-4">
+							        <h4 class="text-xl font-bold text-gray-900"><%= p.getName() %></h4>
+							         <div class="flex items-center justify-between">
+							        	<p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
+							        
+								        <a href="" class="text-gray-500 hover:text-red-500">
+								            <i class="fas fa-heart"></i> <!-- Heart icon -->
+								        </a>
+							    	</div>
+							        
+							        <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">
+							            Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
+							        </a>
+							        <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 block text-center">
+							            Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
+							        </a>
+							    </div>
+							</div>
+  
 	                    <%
 								}
 							}
