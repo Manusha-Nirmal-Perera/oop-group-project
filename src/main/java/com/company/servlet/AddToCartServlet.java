@@ -25,15 +25,15 @@ public class AddToCartServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            out.println("<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>");
             
             ArrayList<Cart> cartList = new ArrayList<>();
             
             int cpid = Integer.parseInt(request.getParameter("id"));
+            int qty = Integer.parseInt(request.getParameter("quantity"));
             Cart cp = new Cart();
             
             cp.setId(cpid);
-            cp.setQuantity(1);
+            cp.setQuantity(qty);
             HttpSession ses = request.getSession();
             @SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) ses.getAttribute("cart-list");

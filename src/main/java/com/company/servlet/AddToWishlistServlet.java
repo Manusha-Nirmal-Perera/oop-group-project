@@ -31,22 +31,18 @@ public class AddToWishlistServlet extends HttpServlet {
 				if(!isExist) {
 					boolean res = wldao.AddToWishList(uid, prId);
 					if(res) {
-						System.out.println("W 1");
 						request.getSession().setAttribute("alertMessage", "Item added to wish list");
 		                request.getSession().setAttribute("alertType", "success");
 					} else {
-						System.out.println("W 2");
 						request.getSession().setAttribute("alertMessage", "Something went wrong..!");
 		                request.getSession().setAttribute("alertType", "error");
 					}
 				}else {
 					boolean res = wldao.removeFromWishList(uid, prId);
 					if(res) {
-						System.out.println("W 3");
 						request.getSession().setAttribute("alertMessage", "Item removed from wish list");
 		                request.getSession().setAttribute("alertType", "success");
 					} else {
-						System.out.println("W 4");
 						request.getSession().setAttribute("alertMessage", "Something went wrong..!");
 		                request.getSession().setAttribute("alertType", "error");
 					}

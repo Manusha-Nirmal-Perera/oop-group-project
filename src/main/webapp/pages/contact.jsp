@@ -50,7 +50,7 @@
                         <option value="report_issue">Report an Issue</option>
                         <option value="seek_assistance">Seek Assistance</option>
                         <option value="feedback_suggestion">Give Feedback and Suggestion</option>
-                        <option value="feedback_suggestion">Other</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div>

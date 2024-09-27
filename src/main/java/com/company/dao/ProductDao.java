@@ -224,42 +224,40 @@ public class ProductDao {
 	        return cItems;
 	    }
 //	method to delete the product from database
-	    public boolean deleteItem(int prID) {
-	        boolean res = false;
-	        String query = "DELETE FROM products WHERE id=?";
-	        PreparedStatement pst = null;
-	        
-	        try {
-	            pst = this.con.prepareStatement(query);
-	            pst.setInt(1, prID);
-	            int rowsAffected = pst.executeUpdate();
-	            res = rowsAffected > 0;
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        return res;
+	public boolean deleteItem(int prID) {
+	    boolean res = false;
+	    String query = "DELETE FROM products WHERE id=?";
+	    PreparedStatement pst = null;
+	    
+	    try {
+	        pst = this.con.prepareStatement(query);
+	        pst.setInt(1, prID);
+	       int rowsAffected = pst.executeUpdate();
+	        res = rowsAffected > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
 	    }
+	    return res;
+	}
 //	method to edit the product info
-		public boolean editProductinfo(int productId, String productName, double price) {
-			boolean res = false;
+	public boolean editProductinfo(int productId, String productName, double price) {
+		boolean res = false;
 
-			String query = "UPDATE products SET name=?, price=? WHERE id=?";
-	        PreparedStatement pst = null;
+		String query = "UPDATE products SET name=?, price=? WHERE id=?";
+		PreparedStatement pst = null;
 	        
-	        try {
-	        	pst = this.con.prepareStatement(query);
-	            pst.setString(1, productName);
-	            pst.setDouble(2, price);
-	            pst.setInt(3, productId);
+		try {
+			pst = this.con.prepareStatement(query);
+	   		pst.setString(1, productName);
+	   		pst.setDouble(2, price);
+	   		pst.setInt(3, productId);
 	            
-	            int rowsAffected = pst.executeUpdate();
-	            res = rowsAffected > 0;
-	        }catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-			
-			return res;
-		}
-
+	        int rowsAffected = pst.executeUpdate();
+	        res = rowsAffected > 0;
+	    }catch (SQLException e) {
+	    	e.printStackTrace();
+	    }
+		return res;
+	}
 }
 

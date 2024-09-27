@@ -16,7 +16,7 @@
 <body class="bg-gray-100">
 
 	<!-- Background Overlay -->
-	<div style="backdrop-filter: blur(1px);" id="bg-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10"></div>
+	<div id="bg-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10"></div>
     <%
         if (session.getAttribute("user") != null) {
     %><jsp:include page="../includes/ALheader.jsp" /> <% 
@@ -71,7 +71,7 @@
     <!-- Card Container -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         
-        <!-- My Wishlist Card -->
+        <!-- My Wish-list Card -->
         <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center justify-center hover:shadow-xl transition-shadow duration-300">
             <div class="text-red-500 mb-4">
                 <i class="fas fa-heart fa-3x"></i> <!-- Heart icon for Wishlist -->
@@ -79,7 +79,7 @@
             <h3 class="text-xl font-bold text-gray-900 mb-2">My Wishlist</h3>
             <p class="text-gray-600">View and manage your favorite products.</p>
             <button id="wishlist-open-btn" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Open Wishlist
+                Open Wish-list
             </button>
         </div>
         
@@ -147,7 +147,7 @@
 		request.setAttribute("dcf", dcf);
 	%>
 	<div id="wishlist-popup" class="hidden fixed inset-0 flex justify-center items-center z-10">
-	    <!-- Popup Card -->
+	    <!-- Popup-Card -->
 	    <div class="bg-white rounded-lg shadow-lg max-h-screen overflow-y-auto p-6 relative">
 	        
 	        <!-- Close Button -->
@@ -157,10 +157,10 @@
                 </svg>
             </button>
 	        
-	        <!-- Wishlist Title -->
+	        <!-- wish-list Title -->
 	        <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">My Wishlist</h2>
 	        
-	        <!-- Wishlist Item-->
+	        <!-- wish list Item-->
 	        <%
 		        if (!wishlistItems.isEmpty()) {
 					for (WishlistItem wl : wishlistItems) {
@@ -168,8 +168,7 @@
 
 	        %>
 	        <div class="bg-gray-50 shadow-md p-1 pr-2 mb-2 rounded-lg">
-	            <form method="post" action="/ecommerce/make-order-now" class="flex items-center justify-between space-x-4 mb-4">
-	                <input type="hidden" name="cpID" value="">
+	        	<div class="flex items-center justify-between space-x-4 mb-4">
 	                <img class="w-12 h-12 object-cover" src="/ecommerce/components/images/products/<%= p.getImage() %>" alt="Product Image">
 	                <div class="flex-1">
 	                    <h3 class="font-medium text-gray-900"><%=p.getName() %></h3>
@@ -185,13 +184,14 @@
 	                    <a href="/ecommerce/qty-inc-dec?action=inc&id=productID" 
 	                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">+</a>
 	                </div>
-	                <a href="/ecommerce/rm-from-cart?id=productID" 
-	                   class="bg-gray-200 text-red-500 font-bold hover:bg-red-500 hover:text-white px-2 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i></a>
-	                <button type="submit" 
-	                       class="bg-blue-100 text-blue-600 font-bold hover:bg-blue-600 hover:text-white px-4 py-1 rounded cursor-pointer transition ease-in-out duration-300" >
+	                <a href="/ecommerce/user-remove-from-wishlist?prID=<%=wl.getId() %>" 
+	                   class="bg-gray-200 text-red-500 font-bold hover:bg-red-500 hover:text-white px-2 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i>
+	                </a>
+	                <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>&quantity=<%=wl.getWLquantity() %>"
+	                	class="bg-blue-100 text-blue-600 font-bold hover:bg-blue-600 hover:text-white px-4 py-1 rounded cursor-pointer transition ease-in-out duration-300" >
 	                       <i class="fas fa-cart-plus"></i>
-					</button>
-	            </form>
+					</a>
+	            </div>
 	        </div>
 	        <%
 						}

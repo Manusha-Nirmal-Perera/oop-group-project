@@ -56,14 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 // 	Close popup (click on outside)
 	window.addEventListener('click', (e) => {
-        if (chngePwModal && !chngePwModal.contains(e.target) && !changePwBtn.contains(e.target)) {
+        if (!chngePwModal.contains(e.target) && !changePwBtn.contains(e.target)) {
 			chngePwModal.classList.add('hidden');
 			if (wishlistModal.classList.contains('hidden')) {
 				bgOverlay.classList.add('hidden');
 		   	}
 		}
 
-		if (wishlistModal && !wishlistModal.contains(e.target) && !wishlistOpenBtn.contains(e.target)) {
+		if (!wishlistModal.contains(e.target) && !wishlistOpenBtn.contains(e.target)) {
 		    wishlistModal.classList.add('hidden');
 		    if (chngePwModal.classList.contains('hidden')) {
 		        bgOverlay.classList.add('hidden');
@@ -104,4 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		bgOverlay.classList.add('hidden');
 	});
 
+//	modal behaviors according to url
+	const userProfileModalPopup = () =>{
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.has('wlupdate') && urlParams.get('wlupdate') === 'completed') {
+			wishlistModal.classList.toggle('hidden');
+			bgOverlay.classList.toggle('hidden');    
+		}
+	};
+	userProfileModalPopup();
 });

@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.company.dao.ProductDao"%>
+<%@page import="com.company.dao.*"%>
 <%@page import="com.company.connection.DbCon"%>
 <%@page import="com.company.modal.*"%>
 <%@ page import="java.text.DecimalFormat" %>
@@ -100,12 +100,37 @@
 							         <div class="flex items-center justify-between">
 							        	<p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
 							        
-								        <a href="/ecommerce/user-add-to-wishlist?prid=<%= p.getId()%>" class="text-gray-500 hover:text-red-500">
-								            <i class="fas fa-heart"></i> <!-- Heart icon -->
+								        
+								        	<%
+									        	if (session.getAttribute("user") != null) {
+													User u = (User) request.getSession().getAttribute("user");
+													WishlistDao wDao = new WishlistDao(DbCon.getConnection());
+													boolean res = wDao.isExist(u.getId(), p.getId());
+													if(res){
+											%>
+														<a href="/ecommerce/user-uncheck-wishlist?prID=<%= p.getId()%>">
+															<i class="text-red-600 hover:text-red-700 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Remove from Wishlist"></i>
+														</a>
+											<%
+														
+													}else{
+											%>
+														<a href="/ecommerce/user-add-to-wishlist?prid=<%= p.getId()%>">
+															<i class="text-gray-500 hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
+														</a>
+											<%
+														
+													}
+												} else {
+											%>
+													<i class="text-gray-500 hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
+											<%
+												}
+								        	%>
 								        </a>
 							    	</div>
 							        
-							        <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">
+							        <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>&quantity=1" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">
 							            Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
 							        </a>
 							        <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 block text-center">
@@ -130,6 +155,7 @@
     <jsp:include page="../includes/footer.jsp" />
 
     <script src="../components/js/script.js"></script>
+    <script src="../components/js/shop.js"></script>
 	<%@ include file="../includes/alert.jsp" %>
 </body>
 

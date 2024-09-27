@@ -34,8 +34,7 @@ public class WishlistDao {
 
             while (rs.next()) {
             	WishlistItem wlItem = new WishlistItem();
-            	
-            	wlItem.setUserId(rs.getInt("record_id"));
+            	wlItem.setRecordId(rs.getInt("record_id"));
             	wlItem.setUserId(rs.getInt("user_id"));
             	wlItem.setId(rs.getInt("product_id"));
             	wlItem.setWLquantity(rs.getInt("quantity"));
@@ -91,6 +90,7 @@ public class WishlistDao {
 	        pst.setInt(2, prId);
 
 	        int rowsAffected = pst.executeUpdate();
+	        System.out.println(rowsAffected);
 	        result = rowsAffected > 0;
 	        
 	    } catch (SQLException e) {

@@ -17,18 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             backgroundOverlay.classList.add('hidden');
         }
     });
-// modal  behavior according to url
-	const cartModalPopup = () =>{
-		const urlParams = new URLSearchParams(window.location.search);
-		if (urlParams.has('quantity') && urlParams.get('quantity') === 'updated') {
-			cartPopup.classList.toggle('hidden');
-			backgroundOverlay.classList.toggle('hidden');    
-		}
-		if (urlParams.has('category')) {
-			addNavEffect(document.getElementById('shop-nav'));	   
-		}
-	};
-	cartModalPopup();
+
 	
 	// adding the navigation effect
 	function addNavEffect(targetEl){
