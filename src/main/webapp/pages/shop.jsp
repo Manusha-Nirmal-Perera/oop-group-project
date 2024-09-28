@@ -154,8 +154,6 @@
     <!-- Footer -->
     <jsp:include page="../includes/footer.jsp" />
 
-    <script src="../components/js/script.js"></script>
-    <script src="../components/js/shop.js"></script>
 	<%@ include file="../includes/alert.jsp" %>
 </body>
 

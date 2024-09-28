@@ -30,8 +30,7 @@ public class MakeOrderNow extends HttpServlet {
             if (user != null) {
                 String productId = request.getParameter("cpID");
                 int productQuantity = Integer.parseInt(request.getParameter("cpQty"));
-                out.println(productId);
-                out.println(productQuantity);
+
                 if (productQuantity <= 0) {
                 	productQuantity = 1;
                 }

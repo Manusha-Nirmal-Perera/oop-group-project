@@ -34,18 +34,11 @@
         <section>
             <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
             <p class="text-gray-700 mb-4">If you have any questions or need further information, please fill out the form below, and we will get back to you as soon as possible.</p>
-            <form class="space-y-6" action="#" method="post">
-                <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Your Name</label>
-                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter your full name (Eg: Nirmal Perera)" required />
-                </div>
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your Email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter email (Eg: somone@example.com)" required />
-                </div>
+            <form class="space-y-6" action="/ecommerce/user-send-msg" method="post">
+                
                 <div>
                     <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Type of Inquiry</label>
-                    <select id="inquiry" name="inquiry" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <select id="inquiry" name="inquiry_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                         <option value="" disabled selected>Select an option</option>
                         <option value="report_issue">Report an Issue</option>
                         <option value="seek_assistance">Seek Assistance</option>
@@ -79,7 +72,8 @@
 
     <!-- Footer -->
 <jsp:include page="../includes/footer.jsp" />
-
+	
     <script src="/ecommerce/components/js/script.js"></script>
+    <%@ include file="../includes/alert.jsp" %>
 </body>
 </html>

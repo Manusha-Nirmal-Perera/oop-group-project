@@ -85,7 +85,7 @@ public class ReportDao {
             pst = this.con.prepareStatement(query);
             pst.setInt(1, report.getUid());
             pst.setString(2, report.getType());
-            pst.setString(3, report.getType());
+            pst.setString(3, report.getMessege());
             pst.executeUpdate();
             result = true;
         } catch (SQLException e) {

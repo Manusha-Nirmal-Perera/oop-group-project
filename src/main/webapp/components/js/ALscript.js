@@ -10,14 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
         backgroundOverlay.classList.toggle('hidden');
     });
 
-// Close cart popup (click on outside)
-    window.addEventListener('click', (e) => {
-        if (!cartPopup.contains(e.target) && !cartButton.contains(e.target)) {
-            cartPopup.classList.add('hidden');
-            backgroundOverlay.classList.add('hidden');
-        }
-    });
 
+// modal  behavior according to url
+	const cartModalPopup = () =>{
+		console.log("executing..");
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.has('quantity') && urlParams.get('quantity') === 'updated') {
+			cartPopup.classList.toggle('hidden');
+			backgroundOverlay.classList.toggle('hidden');    
+		}
+	};
+	cartModalPopup();
 	
 	// adding the navigation effect
 	function addNavEffect(targetEl){
@@ -44,4 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	    const targetEl = document.getElementById('myprofile-nav');
 	    addNavEffect(targetEl);
 	} else{}
+	
+	// Close cart popup (click on outside)
+	    window.addEventListener('click', (e) => {
+	        if (!cartPopup.contains(e.target) && !cartButton.contains(e.target)) {
+	            cartPopup.classList.add('hidden');
+	            backgroundOverlay.classList.add('hidden');
+	        }
+	    });
 });

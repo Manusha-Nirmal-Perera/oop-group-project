@@ -28,8 +28,8 @@ public class CancelOrderServlet extends HttpServlet {
 			if(id != null) {
 				OrderDao orderDao = new OrderDao(DbCon.getConnection());
 				orderDao.cancelOrder(Integer.parseInt(id));
-				request.getSession().setAttribute("alertMessage", "Item Removed");
-                request.getSession().setAttribute("alertType", "warning");
+				request.getSession().setAttribute("alertMessage", "Order Cancelled");
+                request.getSession().setAttribute("alertType", "success");
 			}else {
 				request.getSession().setAttribute("alertMessage", "Something went Wrong");
                 request.getSession().setAttribute("alertType", "error");
