@@ -180,8 +180,8 @@
 	                <div class="flex items-center space-x-2">
 	                    <a href="/ecommerce/qty-inc-dec?action=dec&id=productID" 
 	                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">-</a>
-	                    <input type="text" name="cpQty" class="font-medium w-6 text-center text-gray-900" value="2" readonly>
-	                    <a href="/ecommerce/qty-inc-dec?action=inc&id=productID" 
+	                    <input type="text" name="cpQty" class="font-medium w-6 text-center text-gray-900" value="<%=wl.getWLquantity() %>" readonly>
+	                    <a href="/ecommerce/wl-inc-dec?action=inc&id=<%=wl.getRecordId() %>" 
 	                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">+</a>
 	                </div>
 	                <a href="/ecommerce/user-remove-from-wishlist?prID=<%=wl.getId() %>" 

@@ -26,6 +26,7 @@
     </style>
 </head>
 <body class="bg-gray-100">
+	
 <!-- Top Navbar -->
 <nav class="bg-gray-800 p-4">
     <div class="container flex justify-between mx-auto">
@@ -51,11 +52,6 @@
                 </a>
             </li>
             <li>
-            </li>
-                <a href="cancelledorders.jsp" class="flex items-center text-gray-300 hover:text-white">
-                     <i class="fas fa-ban mr-2"></i> Cancelled Orders
-                </a>
-            </li>
             <li>
                 <a href="allproducts.jsp" class="flex items-center text-gray-300 hover:text-white">
                     <i class="fas fa-box-open mr-2"></i> All Products
@@ -80,6 +76,12 @@
             <li>
                 <a href="adminActivity.jsp" class="flex items-center text-gray-300 hover:text-white">
                     <i class="fas fa-history mr-2"></i> My Acivity
+                </a>
+
+            </li>
+            <li>
+                <a href="/ecommerce/admin-logout" class="flex items-center text-gray-300 hover:text-white">
+                   	<i class="fas fa-sign-out-alt mr-2"></i> Sign Out
                 </a>
 
             </li>

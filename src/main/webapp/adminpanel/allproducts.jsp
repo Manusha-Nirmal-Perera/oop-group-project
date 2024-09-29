@@ -6,6 +6,10 @@
 <jsp:include page="includes/headernav.jsp" />
 
     <%
+	    if(session.getAttribute("admin") == null) {
+	        response.sendRedirect("adminIndex.jsp");
+	        return;
+	    }
 		ProductDao pd = new ProductDao(DbCon.getConnection());
 		List<Product> products = pd.getAllProducts();
 	%>

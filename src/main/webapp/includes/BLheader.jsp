@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="com.company.connection.DbCon"%>
-	<% out.print(DbCon.getConnection()); %>
+	<% //out.print(DbCon.getConnection()); %>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
      <!-- Navbar -->
     <nav class="bg-gray-800 p-4">

@@ -6,6 +6,10 @@
     <!-- content goes here -->
     
     <%
+	    if(session.getAttribute("admin") == null) {
+	        response.sendRedirect("adminIndex.jsp");
+	        return;
+	    }
     	ReportDao rDao  = new ReportDao(DbCon.getConnection());
     	List<Report> reports = rDao.getAllReports();
     	

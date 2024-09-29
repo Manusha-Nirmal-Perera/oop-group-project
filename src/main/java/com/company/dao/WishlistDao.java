@@ -64,6 +64,30 @@ public class WishlistDao {
 		}
 		return result;
 	}
+	
+//	method to get single wishlist item
+	public WishlistItem getSingleItem (int recId) {
+		WishlistItem wlItem =null;
+        try {
+
+            query = "SELECT * FROM user_wishlist WHERE record_id=?";
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, recId);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+            	wlItem = new WishlistItem();
+            	wlItem.setRecordId(rs.getInt("record_id"));
+            	wlItem.setUserId(rs.getInt("user_id"));
+            	wlItem.setId(rs.getInt("product_id"));
+            	wlItem.setWLquantity(rs.getInt("quantity"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wlItem;
+	}
 
 	public boolean AddToWishList(int uid, int prId) {
 		boolean result = false;
@@ -97,5 +121,22 @@ public class WishlistDao {
 	        e.printStackTrace();
 	    }
 	    return result;
+	}
+
+	public boolean qtyUpdate(int recId, int qty) {
+		boolean result = false;
+		try {
+			query = "UPDATE user_wishlist SET quantity=? WHERE record_id=?";
+			pst = this.con.prepareStatement(query);
+			pst.setInt(1, qty);
+			pst.setInt(2, recId);
+			
+			int rowsAffected = pst.executeUpdate();
+			result = rowsAffected > 0;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

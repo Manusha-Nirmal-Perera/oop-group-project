@@ -5,6 +5,10 @@
 <jsp:include page="includes/headernav.jsp" />
     <!-- content goes here -->
     <%
+	    if(session.getAttribute("admin") == null) {
+	        response.sendRedirect("adminIndex.jsp");
+	        return;
+	    }
 		AdminDao ad = new AdminDao(DbCon.getConnection());
 		List<AdminActivity> activities = ad.getAllAdminActivity();
 	%>

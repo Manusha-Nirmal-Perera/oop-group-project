@@ -5,6 +5,10 @@
 
 
 <%
+	if(session.getAttribute("admin") == null) {
+	    response.sendRedirect("adminIndex.jsp");
+	    return;
+	}
 	UserDao udao = new UserDao(DbCon.getConnection());
 	List<User> users = udao.getAllUsers();
 %>

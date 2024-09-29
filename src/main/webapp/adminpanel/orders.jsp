@@ -2,13 +2,19 @@
 <%@page import="com.company.dao.*"%>
 <%@page import="com.company.connection.DbCon"%>
 <%@page import="com.company.modal.*"%>
-	
+ <%@ page import="java.text.DecimalFormat" %>
 <jsp:include page="includes/headernav.jsp" />
 
     <!-- content goes here -->
 <%
+	if(session.getAttribute("admin") == null) {
+	    response.sendRedirect("adminIndex.jsp");
+	    return;
+	}
     OrderDao odao = new OrderDao(DbCon.getConnection());
     List<Order> orders = odao.getAllOrders();
+    DecimalFormat dcf = new DecimalFormat("###,###.##");
+	request.setAttribute("dcf", dcf);
     	
 %>
     <main class="flex-grow p-6">
@@ -41,14 +47,14 @@
 						<p><span class="font-semibold">User Name:</span> <%=u.getfName() %> <%=u.getlName() %></p>
 					        <p><span class="font-semibold">Email:</span> <%=u.getEmail() %> </p>
 					        <p><span class="font-semibold">Phone:</span> <%=u.getPhone() %></p>
-					        <p><span class="font-semibold">Address:</span> 123 Main St</p>
+					        <p><span class="font-semibold">Address:</span><%=u.getAddress() %></p>
 					    </div>
 		
 						<!-- Product Info -->
 					    <div class="w-1/4">
 					        <p><span class="font-semibold">Product Name:</span> <%=o.getName() %></p>
-					        <p><span class="font-semibold">Unit Price:</span> <%=o.getPrice() %></p>
-					        <p><span class="font-semibold">Total Price:</span> LKR <%=o.getPrice() * o.getQunatity() %></p>
+					        <p><span class="font-semibold">Unit Price:</span> <%=dcf.format(o.getPrice()) %></p>
+					        <p><span class="font-semibold">Total Price:</span> LKR <%=dcf.format(o.getPrice() * o.getQunatity())%></p>
 					    </div>
 						
 		    			<!-- Actions (Cancel and Deliver Buttons) -->

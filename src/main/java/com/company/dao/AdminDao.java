@@ -3,12 +3,17 @@ package com.company.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+import com.company.modal.Admin;
 import com.company.modal.AdminActivity;
 import com.company.modal.Order;
 import com.company.modal.Product;
+import com.company.modal.User;
 
 public class AdminDao {
 	private Connection con;
@@ -60,4 +65,61 @@ public class AdminDao {
 		return activityList;
 	}
 	
+//	method to handle admin login
+	public Admin adminLogin(String email, String password) {
+		Admin admin = null;
+        try {
+            query = "SELECT * FROM admins WHERE email=?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+            if(rs.next()){
+            	String storedHashedPassword = rs.getString("password");
+            	
+            	if (BCrypt.checkpw(password, storedHashedPassword)) {
+            		admin = new Admin();
+            		admin.setId(rs.getInt("id"));
+            		admin.setfName(rs.getString("firstName"));
+            		admin.setlName(rs.getString("lastName"));
+            		admin.setEmail(rs.getString("email"));
+                	admin.setPassword("password");
+            	}else {
+            		System.out.println("Invalid password");
+            	}
+            }else {
+            	System.out.println("User not found");
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return admin;
+    }
+
+//	method to handle admin registration
+	public boolean adminRegister(Admin admin) {
+		boolean result = false;
+		try {
+			query = "SELECT* FROM admins WHERE email=?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, admin.getEmail());
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+              	result = false;
+            }else {
+            	query = "INSERT INTO admins(firstName, lastName, email, password) values (?, ?, ?, ?)";
+                pst = this.con.prepareStatement(query);
+                pst.setString(1, admin.getfName());
+                pst.setString(2, admin.getlName());
+                pst.setString(3, admin.getEmail());
+                pst.setString(4, admin.getPassword());
+                pst.executeUpdate();
+                result = true;
+            }
+	    } catch (SQLException e) {	    	
+	    	e.printStackTrace();
+	    }
+		return result;
+	}
+		
 }

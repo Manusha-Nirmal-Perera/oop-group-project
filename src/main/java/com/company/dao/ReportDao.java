@@ -128,4 +128,21 @@ public class ReportDao {
 	    }
 	    return res;
 	}
+//	method to get total report count
+	public int getReportCount() {
+		int count=0;
+		try {
+			query = "SELECT COUNT(*) FROM user_reports";
+			pst = this.con.prepareStatement(query);
+			rs = pst.executeQuery();
+				
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+				e.printStackTrace();
+		}
+		return count;
+		
+	}
 }

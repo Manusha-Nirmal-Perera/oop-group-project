@@ -1,4 +1,9 @@
-
+	<%
+	if(session.getAttribute("admin") == null) {
+	    response.sendRedirect("adminIndex.jsp");
+	    return;
+	}
+	%>
 <jsp:include page="includes/headernav.jsp" />
 
 

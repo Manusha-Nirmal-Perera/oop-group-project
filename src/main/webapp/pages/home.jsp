@@ -39,7 +39,7 @@
                 <a href="shop.jsp" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Shop Now</a>
             </div>
             <div class="lg:w-1/2 mt-10 lg:mt-0">
-                <img src="https://via.placeholder.com/600x400" alt="Hero Image" class="rounded-lg shadow-lg">
+                <img src="../components/images/utilities/heroImage.jpg" alt="Hero Image" class="m-4 rounded-lg shadow-lg">
             </div>
         </div>
     </section>
