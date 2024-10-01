@@ -154,6 +154,7 @@ public class OrderDao {
                 order.setImage(product.getImage());
                 order.setQunatity(rs.getInt("o_quantity"));
                 order.setDate(rs.getString("o_date"));
+                order.setStatus(rs.getString("o_status"));
                 list.add(order);
             }
         } catch (Exception e) {
@@ -242,5 +243,45 @@ public class OrderDao {
 			e.printStackTrace();
 		}
 		return amount;
+	}
+	
+//	user reject order
+	public boolean userRejectOrder(int id) {
+		boolean res = false;
+
+		query = "UPDATE orders SET o_status = ? WHERE o_id = ?";
+
+        try {
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, "Rejected");
+			pst.setInt(2, id);	
+
+            
+            int rowsAffected = pst.executeUpdate();
+            res = rowsAffected > 0;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return res;
+	}
+	
+//	user accept order
+	public boolean userAcceptOrder(int id) {
+		boolean res = false;
+
+		query = "UPDATE orders SET o_status = ? WHERE o_id = ?";
+
+        try {
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, "Accepted");
+			pst.setInt(2, id);	
+
+            
+            int rowsAffected = pst.executeUpdate();
+            res = rowsAffected > 0;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return res;
 	}
 }
