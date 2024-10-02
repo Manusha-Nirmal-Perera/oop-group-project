@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 	
 	const bgOverlay = document.getElementById('bg-overlay');
-	
 	const imgUpArea = document.getElementById("profile-pic-up");
 	const editBtn = document.getElementById("edit-profile-btn");
   	const saveBtn = document.getElementById("save-changes-btn");
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   	const wishlistModal = document.getElementById('wishlist-popup');
   	const wishlistCloseBtn = document.getElementById('wishlist-close-btn');
 
-	
 //	remove the readonly attribute of the input fields and show the image upload area  
 	editBtn.addEventListener("click", () => {
 		event.preventDefault();
@@ -55,21 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	
 // 	Close popup (click on outside)
-	window.addEventListener('click', (e) => {
-        if (!chngePwModal.contains(e.target) && !changePwBtn.contains(e.target)) {
-			chngePwModal.classList.add('hidden');
-			if (wishlistModal.classList.contains('hidden')) {
-				bgOverlay.classList.add('hidden');
-		   	}
-		}
 
-		if (!wishlistModal.contains(e.target) && !wishlistOpenBtn.contains(e.target)) {
-		    wishlistModal.classList.add('hidden');
-		    if (chngePwModal.classList.contains('hidden')) {
-		        bgOverlay.classList.add('hidden');
-		    }
-		}
-	});
+
+window.addEventListener('click', (e) => {
+	console.log('Clicked element:', e.target);
+    if (!chngePwModal.contains(e.target) && !changePwBtn.contains(e.target)) {
+        chngePwModal.classList.add('hidden');
+        if (wishlistModal.classList.contains('hidden')) {
+            bgOverlay.classList.add('hidden');
+        }
+    }
+
+    if (!wishlistModal.contains(e.target) && !wishlistOpenBtn.contains(e.target)) {
+        wishlistModal.classList.add('hidden');
+        if (chngePwModal.classList.contains('hidden')) {
+            bgOverlay.classList.add('hidden');
+        }
+    }
+});
+
 	
 //	show change password modal
 	changePwBtn.addEventListener('click', function() {
@@ -113,4 +115,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	};
 	userProfileModalPopup();
+	
 });

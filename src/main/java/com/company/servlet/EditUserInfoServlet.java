@@ -28,29 +28,35 @@ public class EditUserInfoServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
-		
+		String existingImg = request.getParameter("currImg");
+		System.out.println(existingImg);
 		Part filePart = request.getPart("profile-pic");
+		boolean skipExecution = false;
         if (filePart == null || filePart.getSize() == 0) {
-            response.getWriter().println("No file uploaded.");
-            return;
+        	skipExecution = true;
         }
 
         // Generate a unique file name
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        String newFileName = UUID.randomUUID().toString() + fileExtension;
+        String newFileName = existingImg;
+        if(!skipExecution) {
+        	String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+            newFileName = UUID.randomUUID().toString() + fileExtension;
 
-        // Define upload path
-        String uploadPath = "D:\\eclipse projects\\ecommerce\\src\\main\\webapp\\components\\images\\users";
+            // Define upload path
+            String uploadPath = "D:\\eclipse projects\\ecommerce\\src\\main\\webapp\\components\\images\\users";
 
-        // Create the directory if it doesn't exist
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
+            // Create the directory if it doesn't exist
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            // Write the uploaded file to the target location
+            filePart.write(uploadPath + File.separator + newFileName);
+        	
         }
-
-        // Write the uploaded file to the target location
-        filePart.write(uploadPath + File.separator + newFileName);
+        
         
         try {
         	User user = new User();

@@ -232,7 +232,7 @@ public class OrderDao {
 	public double getTotalSales() {
 		double amount = 0;
 		try {
-			query = "SELECT SUM(o.o_quantity * p.price) FROM orders o, products p Where o.p_id = p.id";
+			query = "SELECT SUM(o.o_quantity * p.price) FROM orders o, products p Where o.p_id = p.id AND o_status='Accepted'";
 			pst = this.con.prepareStatement(query);
 			rs = pst.executeQuery();
 			

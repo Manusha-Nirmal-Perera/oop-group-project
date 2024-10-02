@@ -42,36 +42,32 @@ public class WLQtyIncDecServlet extends HttpServlet {
 					if (action.equals("inc")) {
 						qty = qty+1;
 						boolean result = wlDao.qtyUpdate(recId, qty);
-						if(result) {
-							request.getSession().setAttribute("alertMessage", "Wishlist Item Quantity increased");
-			                request.getSession().setAttribute("alertType", "success");
-						}else {
-							request.getSession().setAttribute("alertMessage", "Something went wrong..!");
+						if(!result) {
+							request.getSession().setAttribute("alertMessage", "Quantity update failed..!");
 			                request.getSession().setAttribute("alertType", "error");
 						}
 					}
 					
 					
 					if (action.equals("dec")) {
-						if(qty==1) {
+						qty = qty-1;
+						if(qty==0) {
 							request.getSession().setAttribute("alertMessage", "Minimum Storeble qty is 1");
 							request.getSession().setAttribute("alertType", "info");
 							skipExecution = true;
+							response.sendRedirect("pages/myprofile.jsp");
 						}
 						if(!skipExecution) {
 							
 							boolean result = wlDao.qtyUpdate(recId, qty);
-							if(result) {
-								request.getSession().setAttribute("alertMessage", "Wishlist Item Quantity increased");
-				                request.getSession().setAttribute("alertType", "success");
-							}else {
-								request.getSession().setAttribute("alertMessage", "Something went wrong..!");
+							if(!result) {
+								request.getSession().setAttribute("alertMessage", "Quantity update failed..!");
 				                request.getSession().setAttribute("alertType", "error");
 							}
 						}
 					}
 				} else {
-					request.getSession().setAttribute("alertMessage", "Something went wrong..!");
+					request.getSession().setAttribute("alertMessage", "Invalid Action..!");
 	                request.getSession().setAttribute("alertType", "error");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
@@ -82,8 +78,9 @@ public class WLQtyIncDecServlet extends HttpServlet {
 			request.getSession().setAttribute("alertMessage", "You need to login first before using this feature In");
             request.getSession().setAttribute("alertType", "info");
 		}
-		
-		response.sendRedirect("pages/myprofile.jsp");
+		if(!skipExecution) {
+			response.sendRedirect("pages/myprofile.jsp?wlupdate=completed");
+		}
 	}
 
 }

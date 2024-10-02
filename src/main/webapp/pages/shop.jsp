@@ -99,7 +99,6 @@
 							        <h4 class="text-xl font-bold text-gray-900"><%= p.getName() %></h4>
 							         <div class="flex items-center justify-between">
 							        	<p class="text-gray-600 font-semibold">LKR <%= dcf.format(p.getPrice()) %></p>
-							        
 								        
 								        	<%
 									        	if (session.getAttribute("user") != null) {
@@ -116,14 +115,14 @@
 													}else{
 											%>
 														<a href="/ecommerce/user-add-to-wishlist?prid=<%= p.getId()%>">
-															<i class="text-gray-500 hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
+															<i class="text-white hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
 														</a>
 											<%
 														
 													}
 												} else {
 											%>
-													<i class="text-gray-500 hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
+													<i class="text-white hover:text-red-500 fas fa-heart text-3xl" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" title="Add to Wishlist"></i>
 											<%
 												}
 								        	%>
