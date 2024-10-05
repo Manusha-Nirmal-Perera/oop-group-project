@@ -13,7 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
   	const wishlistOpenBtn = document.getElementById("wishlist-open-btn");
   	const wishlistModal = document.getElementById('wishlist-popup');
   	const wishlistCloseBtn = document.getElementById('wishlist-close-btn');
-
+	
+	const contactOpenBtn = document.getElementById("contact-open-button");
+	const contactModal = document.getElementById("contact-popup");
+	const contactCloseBtn = document.getElementById("contact-close-btn");
+	
 //	remove the readonly attribute of the input fields and show the image upload area  
 	editBtn.addEventListener("click", () => {
 		event.preventDefault();
@@ -59,17 +63,23 @@ window.addEventListener('click', (e) => {
 	console.log('Clicked element:', e.target);
     if (!chngePwModal.contains(e.target) && !changePwBtn.contains(e.target)) {
         chngePwModal.classList.add('hidden');
-        if (wishlistModal.classList.contains('hidden')) {
+        if (wishlistModal.classList.contains('hidden') && contactModal.classList.contains('hidden')) {
             bgOverlay.classList.add('hidden');
         }
     }
 
     if (!wishlistModal.contains(e.target) && !wishlistOpenBtn.contains(e.target)) {
         wishlistModal.classList.add('hidden');
-        if (chngePwModal.classList.contains('hidden')) {
+        if (chngePwModal.classList.contains('hidden') && contactModal.classList.contains('hidden')) {
             bgOverlay.classList.add('hidden');
         }
     }
+	if (!contactModal.contains(e.target) && !contactOpenBtn.contains(e.target)) {
+		contactModal.classList.add('hidden');
+		if (wishlistModal.classList.contains('hidden') && chngePwModal.classList.contains('hidden')) {
+			bgOverlay.classList.add('hidden');
+		}
+	}
 });
 
 	
@@ -106,6 +116,18 @@ window.addEventListener('click', (e) => {
 		bgOverlay.classList.add('hidden');
 	});
 
+
+// 	show contact modal
+	contactOpenBtn.addEventListener('click', function() {
+		contactModal.classList.remove('hidden');
+		bgOverlay.classList.remove('hidden');
+	});
+// 	hide contact modal
+	contactCloseBtn.addEventListener('click', function() {
+		contactModal.classList.add('hidden');
+		bgOverlay.classList.add('hidden');
+	});		
+	
 //	modal behaviors according to url
 	const userProfileModalPopup = () =>{
 		const urlParams = new URLSearchParams(window.location.search);

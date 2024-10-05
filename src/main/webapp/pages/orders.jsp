@@ -90,6 +90,20 @@
         	<%
         		}
         	%>
+        	<%
+        		if(o.getStatus().equals("Accepted")){
+        	%>
+        		<a class="bg-blue-200 text-blue-800 px-4 py-2 rounded-lg hover:bg-blue-300" href="">Review</a>
+        	<%
+        		}
+        	%>
+        	<%
+        		if(o.getStatus().equals("Rejected")){
+        	%>
+        		<a class="bg-red-200 text-red-800 px-4 py-2 rounded-lg hover:bg-red-300" href="">Reason</a>
+        	<%
+        		}
+        	%>
             
         </div>
     </div>

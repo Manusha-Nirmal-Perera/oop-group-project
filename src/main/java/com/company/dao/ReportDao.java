@@ -54,7 +54,8 @@ public class ReportDao {
 	public List<Report> getAllReportsByUid(int uid) {
         List<Report> reports = new ArrayList<>();
         try {
-            query = "SELECT * FROM user_reports WHERE user_id =? ORDER BY date ASC";
+            query = "SELECT * FROM user_reports WHERE user_id =?";
+            pst = this.con.prepareStatement(query);
             pst.setInt(1, uid);
 	        rs = pst.executeQuery();
             

@@ -112,7 +112,7 @@
 			                       class="bg-gray-200 text-gray-900 font-bold hover:bg-gray-400 hover:text-white px-3 py-1 rounded transition ease-in-out duration-300">+</a>
 			                </div>
 			                <a href="/ecommerce/user-remove-from-wishlist?prID=<%=wl.getId() %>" 
-			                   class="bg-gray-200 text-red-500 font-bold hover:bg-red-500 hover:text-white px-2 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i>
+			                   class="bg-red-100 text-red-500 font-bold hover:bg-red-500 hover:text-white px-4 py-1 rounded transition ease-in-out duration-300"><i class="fas fa-trash"></i>
 			                </a>
 			                <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>&quantity=<%=wl.getWLquantity() %>"
 			                	class="bg-blue-100 text-blue-600 font-bold hover:bg-blue-600 hover:text-white px-4 py-1 rounded cursor-pointer transition ease-in-out duration-300" >
@@ -129,6 +129,79 @@
 			</div>
 	
     <!-- wish-list modal end -->
+    
+    
+    <!-- contact modal start -->
+    	<%	
+			ReportDao rDao = new ReportDao(DbCon.getConnection());
+			System.out.println(u.getId());
+			List<Report> reports = rDao.getAllReportsByUid(u.getId());
+			System.out.println(reports);
+			
+		%>
+			<div id="contact-popup" class="hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10" style="position: absolute; min-width:650px">
+			    <!-- Popup-Card -->
+			    <div class="bg-white rounded-lg shadow-lg relative p-6">
+			        
+			        <!-- Close Button -->
+			        <button type="button" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600" id="contact-close-btn">
+		                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+		                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+		                </svg>
+		            </button>
+			        
+
+			        <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">My Reports</h2>
+			        
+			        <div class="overflow-y-auto" style="max-height:500px">
+			        <!-- report Item-->
+			        <%
+				        if (!reports.isEmpty()) {
+							for (Report r : reports) {
+			        %>
+			        <div class="bg-gray-50 shadow-md p-4 mb-2 rounded-lg">
+    					<div class="grid grid-cols-4 gap-4 items-center">
+        					<!-- Column 1: Type -->
+        					<div class="col-span-1">
+        					    <h3 class="font-medium text-gray-900"><%= r.getType() %></h3>
+        					</div>
+        
+        					<!-- Column 2: Date -->
+        					<div class="col-span-1">
+        					    <span class="text-sm text-gray-600"><%= r.getDate() %></span>
+        					</div>
+        
+        					<!-- Column 3: Message -->
+        					<div class="col-span-1">
+        					    <span class="text-sm text-gray-900 font-semibold"><%= r.getMessege() %></span>
+        					</div>
+        
+        					<!-- Column 4: Status -->
+        					<div class="col-span-1">
+            					<% if(r.getStatus().equals("Pending")) { %>
+                					<div class="border-red-500 border-2 rounded-full px-4 py-1 inline-block text-red-500 text-center">
+                    					<%= r.getStatus() %>
+                					</div>
+            					<% } else { %>
+                				<div class="border-green-500 border-2 rounded-full px-4 py-1 inline-block text-green-500 text-center">
+                				    <%= r.getStatus() %>
+                				</div>
+            					<% } %>
+        					</div>
+    					</div>
+					</div>
+
+			        <%
+								}
+					        }
+			        %>
+			        </div>
+			    </div>
+			</div>
+	
+    <!-- contact modal end -->
+    
+    
     
     <!-- Profile Section -->
     <section class="py-16 bg-gray-100">
@@ -191,9 +264,9 @@
 				            </div>
 				            <h3 class="text-xl font-bold text-gray-900 mb-2">My Contacts</h3>
 				            <p class="text-gray-600">Manage your saved contact information.</p>
-				            <a href="/ecommerce/my-contacts" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+				            <button id="contact-open-button" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
 				                Go to Contacts
-				            </a>
+				            </button>
 				        </div>
     				</div>
 				</div>
