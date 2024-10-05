@@ -50,7 +50,7 @@
                         Register
                     </button>
                     <!-- Back to Login Button to Transform -->
-                    <input type="submit" id="reg-btn" onclick="showLogin()" value="Back to Login" class="w-full bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    <button type="button" id="reg-btn" onclick="showLogin()" class="w-full bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back to Login</button>
                 </form>
             </div>
             <!-- Login Form -->

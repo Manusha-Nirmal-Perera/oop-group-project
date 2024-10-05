@@ -38,13 +38,14 @@
             <h2 class="text-2xl font-semibold mb-4">Login</h2>
             <div class="mb-4">
                 <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="login-email" id="login-email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="name@company.com">
+                <input type="email" name="login-email" id="login-email" class="p-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="name@company.com">
             </div>
             <div class="mb-4">
                 <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" name="login-password" id="login-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="••••••••">
+                <input type="password" name="login-password" id="login-password" class="p-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="••••••••">
             </div>
             <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Login</button>
+            <a href="/ecommerce/adminpanel/adminIndex.jsp" target="_blank" class="w-full block bg-purple-700 text-center mt-2 text-white py-2 rounded-md hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Login as Admin</a>
         </form>
     </div>
 </div>
