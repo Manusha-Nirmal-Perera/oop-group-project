@@ -78,6 +78,8 @@ public class EditUserInfoServlet extends HttpServlet {
         	} else {
         		request.getSession().setAttribute("alertMessage", "Something went wrong..!");
                 request.getSession().setAttribute("alertType", "error");
+                
+                request.getSession().setAttribute("isImageAdded", "ProfilePic Added");
         	}
         	response.sendRedirect("pages/myprofile.jsp");
         }catch(Exception e) {

@@ -58,7 +58,21 @@
 	            </table>
 	        </div>
     	</main>
-    
+    <%
+
+    	if(session.getAttribute("isProductAdded") !=null){
+    		
+    %>
+    		<script>
+        		window.onload = function() {
+           			window.location.reload();
+        		};
+    		</script>
+    <%
+    		session.removeAttribute("isProductAdded");
+    	}
+    %>
+
     <!-- content goes here  -->
     <%@ include file="./includes/ending.jsp" %>
     <%@ include file="../includes/alert.jsp" %>

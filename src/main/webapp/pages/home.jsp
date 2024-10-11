@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+have<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -76,10 +76,10 @@
 	    			    <h4 class="text-xl font-semibold text-gray-800"><%= p.getName() %></h4>
 	    			    <p class="text-gray-600">LKR <%= dcf.format(p.getPrice()) %></p>
 	    			     
-	    			    <a href="../add-to-cart?id=<%= p.getId() %>" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
+	    			    <a href="/ecommerce/add-to-cart?id=<%= p.getId() %>&quantity=1" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-900 block text-center">
 	    			        Add to Cart &nbsp;&nbsp;&nbsp;<i class="fas fa-cart-plus"></i>
 	    			    </a>
-	    			    <a href="../make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
+	    			    <a href="/ecommerce/make-order-now?cpQty=1&cpID=<%= p.getId() %>" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-900 block text-center">
 	    			        Buy Now &nbsp;&nbsp;&nbsp;<i class="fas fa-check-circle"></i>
 	    			    </a>
 	    			</div>

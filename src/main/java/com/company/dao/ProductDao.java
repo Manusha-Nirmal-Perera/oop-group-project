@@ -3,11 +3,12 @@ package com.company.dao;
 import java.sql.*;
 import java.util.*;
 
+import com.company.Repository.ProductRepository;
 import com.company.connection.DbCon;
 import com.company.modal.Cart;
 import com.company.modal.Product;
 
-public class ProductDao {
+public class ProductDao implements ProductRepository {
 	private Connection con;
 
 	private String query;
@@ -21,9 +22,10 @@ public class ProductDao {
 	}
 	
 //	method to add new products
-	public boolean saveProduct(Product product) throws ClassNotFoundException {
+	public boolean saveProduct(Product product) {
 		boolean result = false;
 		try {
+			
 			Connection con = DbCon.getConnection();
 			PreparedStatement ps = con.prepareStatement("INSERT INTO products (name, category, price, image) VALUES (?, ?, ?, ?)");
 	        ps.setString(1, product.getName());
@@ -33,7 +35,7 @@ public class ProductDao {
 
 	        ps.executeUpdate();
 	        result = true;
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return result;

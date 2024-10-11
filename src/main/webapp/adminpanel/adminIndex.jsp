@@ -78,7 +78,6 @@
         </div>
         
         <div class="form-container flex">
-            <!-- Register Form -->
             
         </div>
     

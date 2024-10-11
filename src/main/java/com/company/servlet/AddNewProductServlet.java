@@ -50,7 +50,7 @@ public class AddNewProductServlet extends HttpServlet {
 	
 	         // Define upload path
 	         String uploadPath = "D:\\eclipse projects\\ecommerce\\src\\main\\webapp\\components\\images\\products";
-	
+
 	         // Create the directory if it doesn't exist
 	         File uploadDir = new File(uploadPath);
 	         if (!uploadDir.exists()) {
@@ -78,12 +78,15 @@ public class AddNewProductServlet extends HttpServlet {
 					
 					request.getSession().setAttribute("alertMessage", "Item added");
 	                request.getSession().setAttribute("alertType", "success");
+	                
+			        request.getSession().setAttribute("isProductAdded", "ltem Added");
 				}else {
 					adminActivity.setDescription("");
 					adminActivity.setStatus("Failed");
 					
 					request.getSession().setAttribute("alertMessage", "Something went wrong !");
 			        request.getSession().setAttribute("alertType", "error");
+
 				}
 				aDao.insetIntoAdminActivity(adminActivity);
 		     } catch (ClassNotFoundException | SQLException e) {

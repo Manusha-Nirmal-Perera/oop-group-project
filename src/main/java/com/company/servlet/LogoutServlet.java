@@ -22,8 +22,12 @@ public class LogoutServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			if(request.getSession().getAttribute("user")!=null) {
 				request.getSession().removeAttribute("user");
+				request.getSession().setAttribute("alertMessage", "Logged out");
+                request.getSession().setAttribute("alertType", "success");
 				response.sendRedirect("pages/home.jsp");
 			}else {
+				request.getSession().setAttribute("alertMessage", "Something went Wrong..!");
+                request.getSession().setAttribute("alertType", "error");
 				response.sendRedirect("pages/home.jsp");
 			}
 		} 

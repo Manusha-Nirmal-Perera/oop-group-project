@@ -53,25 +53,25 @@
         <h2 class="text-4xl font-extrabold mb-6 text-center text-gray-800">Meet the Team</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:bg-gray-100">
-                <img src="https://via.placeholder.com/150" alt="Nirmal" class="w-32 h-32 rounded-full mx-auto mb-6">
+                <img src="/ecommerce/components/images/utilities/nirmal.jpg" alt="Nirmal" class="w-32 h-32 rounded-full mx-auto mb-6">
                 <h3 class="text-2xl font-bold text-gray-900">Nirmal</h3>
                 <p class="text-gray-500 text-lg mb-4">Founder & CEO</p>
                 <p class="text-gray-600">Visionary leader shaping Evermart's success, committed to exceptional customer experiences.</p>
             </div>
             <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:bg-gray-100">
-                <img src="https://via.placeholder.com/150" alt="Rashan" class="w-32 h-32 rounded-full mx-auto mb-6">
+                <img src="/ecommerce/components/images/utilities/rashan.jpg" alt="Rashan" class="w-32 h-32 rounded-full mx-auto mb-6">
                 <h3 class="text-2xl font-bold text-gray-900">Rashaan</h3>
                 <p class="text-gray-500 text-lg mb-4">Chief Technology Officer</p>
                 <p class="text-gray-600">Tech wizard behind the smooth, secure Evermart platform, ensuring a seamless experience for all.</p>
             </div>
             <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:bg-gray-100">
-                <img src="https://via.placeholder.com/150" alt="Chamodya" class="w-32 h-32 rounded-full mx-auto mb-6">
+                <img src="/ecommerce/components/images/utilities/chanodya.jpg" alt="Chamodya" class="w-32 h-32 rounded-full mx-auto mb-6">
                 <h3 class="text-2xl font-bold text-gray-900">Chanodya</h3>
                 <p class="text-gray-500 text-lg mb-4">Head of Marketing</p>
                 <p class="text-gray-600">Creative force behind our brand, connecting Evermart with customers in innovative ways.</p>
             </div>
             <div class="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:scale-105 hover:bg-gray-100">
-                <img src="https://via.placeholder.com/150" alt="Yasidu" class="w-32 h-32 rounded-full mx-auto mb-6">
+                <img src="/ecommerce/components/images/utilities/yasidu.jpg" alt="Yasidu" class="w-32 h-32 rounded-full mx-auto mb-6">
                 <h3 class="text-2xl font-bold text-gray-900">Yasidu</h3>
                 <p class="text-gray-500 text-lg mb-4">Operations Manager</p>
                 <p class="text-gray-600">The engine behind the scenes, making sure everything flows smoothly from store to doorstep.</p>

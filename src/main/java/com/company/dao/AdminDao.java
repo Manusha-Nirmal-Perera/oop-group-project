@@ -9,13 +9,14 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.company.Repository.*;
 import com.company.modal.Admin;
 import com.company.modal.AdminActivity;
 import com.company.modal.Order;
 import com.company.modal.Product;
 import com.company.modal.User;
 
-public class AdminDao {
+public class AdminDao implements AdminActivityRepository, AdminLoginRepository, AdminRegisterRepository {
 	private Connection con;
 	private String query;
     private PreparedStatement pst;
@@ -96,6 +97,7 @@ public class AdminDao {
     }
 
 //	method to handle admin registration
+	@Override
 	public boolean adminRegister(Admin admin) {
 		boolean result = false;
 		try {
@@ -121,5 +123,7 @@ public class AdminDao {
 	    }
 		return result;
 	}
+
+
 		
 }

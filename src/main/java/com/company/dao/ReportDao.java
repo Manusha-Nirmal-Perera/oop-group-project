@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.company.Repository.ReportRepository;
 import com.company.modal.Order;
 import com.company.modal.Product;
 import com.company.modal.Report;
 
-public class ReportDao {
+public class ReportDao implements ReportRepository{
 	private Connection con;
 	private String query;
     private PreparedStatement pst;

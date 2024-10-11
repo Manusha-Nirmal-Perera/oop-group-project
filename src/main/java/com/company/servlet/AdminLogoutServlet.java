@@ -17,10 +17,14 @@ public class AdminLogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter()) {
-			if(request.getSession().getAttribute("user")!=null) {
-				request.getSession().removeAttribute("user");
+			if(request.getSession().getAttribute("admin")!=null) {
+				request.getSession().removeAttribute("admin");
+				request.getSession().setAttribute("alertMessage", "Logged Out");
+                request.getSession().setAttribute("alertType", "success");
 				response.sendRedirect("adminpanel/adminIndex.jsp");
 			}else {
+				request.getSession().setAttribute("alertMessage", "Something went Wrong..!");
+                request.getSession().setAttribute("alertType", "error");
 				response.sendRedirect("adminpanel/adminIndex.jsp");
 			}
 		}

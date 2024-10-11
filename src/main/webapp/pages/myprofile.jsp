@@ -260,10 +260,10 @@
 				        <!-- My Contacts Card -->
 				        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center justify-center hover:shadow-xl transition-shadow duration-300">
 				            <div class="text-green-500 mb-4">
-				                <i class="fas fa-address-book fa-3x"></i> <!-- Address book icon for Contacts -->
+				                <i class="fas fa-chart-bar fa-3x"></i> <!-- Address book icon for Contacts -->
 				            </div>
-				            <h3 class="text-xl font-bold text-gray-900 mb-2">My Contacts</h3>
-				            <p class="text-gray-600">Manage your saved contact information.</p>
+				            <h3 class="text-xl font-bold text-gray-900 mb-2">My Reports</h3>
+				            <p class="text-gray-600">View status of your sent reports</p>
 				            <button id="contact-open-button" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
 				                Go to Contacts
 				            </button>
@@ -279,7 +279,20 @@
     </section>
 
 
-	
+	<%
+
+    	if(session.getAttribute("isImageAdded") !=null){
+    		
+    %>
+    		<script>
+        		window.onload = function() {
+           			window.location.reload();
+        		};
+    		</script>
+    <%
+    		session.removeAttribute("isImageAdded");
+    	}
+    %>
     <%@ include file="../includes/footer.jsp" %>
     <script src="/ecommerce/components/js/userprofile.js"></script>
     <%@ include file="../includes/alert.jsp" %>

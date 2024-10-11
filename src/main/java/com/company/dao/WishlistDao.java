@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.company.Repository.WishlistRepository;
 import com.company.modal.Product;
 import com.company.modal.WishlistItem;
 
-public class WishlistDao {
+public class WishlistDao implements WishlistRepository{
 	private Connection con;
 
 	private String query;
@@ -114,7 +115,6 @@ public class WishlistDao {
 	        pst.setInt(2, prId);
 
 	        int rowsAffected = pst.executeUpdate();
-	        System.out.println(rowsAffected);
 	        result = rowsAffected > 0;
 	        
 	    } catch (SQLException e) {
@@ -122,7 +122,8 @@ public class WishlistDao {
 	    }
 	    return result;
 	}
-
+	
+	@Override
 	public boolean qtyUpdate(int recId, int qty) {
 		boolean result = false;
 		try {
@@ -139,4 +140,5 @@ public class WishlistDao {
 		}
 		return result;
 	}
+
 }

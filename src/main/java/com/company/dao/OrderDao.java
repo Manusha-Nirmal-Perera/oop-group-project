@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.company.Repository.*;
 import com.company.modal.*;
 
-public class OrderDao {
+public class OrderDao  implements OrderRepository, AdminOrderRepository, UserOrderRepository, OrderStatisticsRepository {
 	
 	private Connection con;
 	private String query;
@@ -283,5 +284,10 @@ public class OrderDao {
             e.printStackTrace();
         }
 		return res;
+	}
+	@Override
+	public List<Order> getUserOrders(int userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
