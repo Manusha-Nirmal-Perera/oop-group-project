@@ -9,7 +9,7 @@ import java.util.*;
 import com.company.Repository.*;
 import com.company.modal.*;
 
-public class OrderDao  implements OrderRepository, AdminOrderRepository, UserOrderRepository, OrderStatisticsRepository {
+public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrderRepository, OrderStatisticsRepository {
 	
 	private Connection con;
 	private String query;
@@ -247,15 +247,16 @@ public class OrderDao  implements OrderRepository, AdminOrderRepository, UserOrd
 	}
 	
 //	user reject order
-	public boolean userRejectOrder(int id) {
+	public boolean userRejectOrder(int id, String msg) {
 		boolean res = false;
 
-		query = "UPDATE orders SET o_status = ? WHERE o_id = ?";
+		query = "UPDATE orders SET o_status = ?, o_msg = ? WHERE o_id = ?";
 
         try {
         	pst = this.con.prepareStatement(query);
         	pst.setString(1, "Rejected");
-			pst.setInt(2, id);	
+        	pst.setString(2, msg);
+			pst.setInt(3, id);	
 
             
             int rowsAffected = pst.executeUpdate();
@@ -285,9 +286,23 @@ public class OrderDao  implements OrderRepository, AdminOrderRepository, UserOrd
         }
 		return res;
 	}
-	@Override
-	public List<Order> getUserOrders(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean userReviewOrder(int id, String msg) {
+		boolean res = false;
+
+		query = "UPDATE orders SET o_status = ?, o_msg = ? WHERE o_id = ?";
+
+        try {
+        	pst = this.con.prepareStatement(query);
+        	pst.setString(1, "Reviewed");
+        	pst.setString(2, msg);
+			pst.setInt(3, id);	
+
+            
+            int rowsAffected = pst.executeUpdate();
+            res = rowsAffected > 0;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return res;
 	}
 }

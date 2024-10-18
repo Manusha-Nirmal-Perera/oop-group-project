@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.company.connection.DbCon;
 import com.company.dao.OrderDao;
 
-
 /**
- * Servlet implementation class RejectOrderServlet
+ * Servlet implementation class ReviewOrderServlet
  */
-@WebServlet("/reject-order")
-public class RejectOrderServlet extends HttpServlet {
+@WebServlet("/review-order")
+public class ReviewOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String msg = request.getParameter("message");
@@ -27,10 +26,10 @@ public class RejectOrderServlet extends HttpServlet {
 		try {
 			OrderDao odao = new OrderDao(DbCon.getConnection());
 			
-			boolean res = odao.userRejectOrder(id, msg);
+			boolean res = odao.userReviewOrder(id, msg);
 			
 			if(res) {
-				request.getSession().setAttribute("alertMessage", "Order Rejected");
+				request.getSession().setAttribute("alertMessage", "Review Submitted");
                 request.getSession().setAttribute("alertType", "success");
 			}else {
 				request.getSession().setAttribute("alertMessage", "Something went wrong..!");
@@ -41,4 +40,5 @@ public class RejectOrderServlet extends HttpServlet {
 		}
 		response.sendRedirect("pages/orders.jsp");
 	}
+
 }

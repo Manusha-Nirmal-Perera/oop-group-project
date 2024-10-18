@@ -7,6 +7,6 @@ public interface OrderRepository {
     boolean insertOrder(Order order);
     Order getOrderById(int id);
     List<Order> getAllOrders();
-    List<Order> getUserOrders(int userId);
+    List<Order> userOrders(int userId);
     void cancelOrder(int orderId);
 }
