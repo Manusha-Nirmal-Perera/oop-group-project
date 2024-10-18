@@ -41,7 +41,7 @@
 					                        </td>
 					                        <td class="py-3 px-6 text-left"><input type="text" value="<%=p.getName() %>" name="pr-name"></td>
 					                        <td class="py-3 px-6 text-left"><%= p.getCategory() %></td>
-					                        <td class="py-3 px-6 text-left"><input type="number" value="<%= p.getPrice() %>" step="0.01" name="pr-price"></td>
+					                        <td class="py-3 px-6 text-left">LKR <input type="number" value="<%= p.getPrice() %>" step="0.01" name="pr-price"></td>
 					                        <td class="py-3 px-6 text-center">
 					                            <input type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" value="Save">
 					                            <a href="../admin-rm-product?id=<%=p.getId() %>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Remove</a>
@@ -58,20 +58,6 @@
 	            </table>
 	        </div>
     	</main>
-    <%
-
-    	if(session.getAttribute("isProductAdded") !=null){
-    		
-    %>
-    		<script>
-        		window.onload = function() {
-           			window.location.reload();
-        		};
-    		</script>
-    <%
-    		session.removeAttribute("isProductAdded");
-    	}
-    %>
 
     <!-- content goes here  -->
     <%@ include file="./includes/ending.jsp" %>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Evermart-Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
@@ -49,6 +49,16 @@
             <li>
                 <a href="orders.jsp" class="flex items-center text-gray-300 hover:text-white">
                     <i class="fas fa-list-ul mr-2"></i> Orders
+                </a>
+            </li>
+            <li>
+                <a href="rejectedOrders.jsp" class="flex items-center text-gray-300 hover:text-white">
+                    <i class="fas fa-ban mr-2"></i> Rejected Orders
+                </a>
+            </li>
+            <li>
+                <a href="acceptedOrders.jsp" class="flex items-center text-gray-300 hover:text-white">
+                    <i class="fas fa-check-square mr-2"></i> Accepted Orders
                 </a>
             </li>
             <li>

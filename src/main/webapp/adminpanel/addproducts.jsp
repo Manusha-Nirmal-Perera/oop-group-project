@@ -38,5 +38,22 @@
 	</div>
 	
 	<%@ include file="../includes/alert.jsp" %>
-	
+	<script>
+    document.getElementById('addProductForm').addEventListener('submit', function(event) {
+        var productName = document.getElementById('name').value;
+        var nameError = document.getElementById('name-error');
+
+        // Regular expression to check if the product name contains only letters and spaces
+        var nameRegex = /^[a-zA-Z\s]+$/;
+
+        // Check if product name is valid
+        if (!nameRegex.test(productName)) {
+            nameError.style.display = 'block';  // Show error message
+            event.preventDefault();  // Prevent form submission
+        } else {
+            nameError.style.display = 'none';  // Hide error message if valid
+        }
+    });
+
+	</script>
 <%@ include file="./includes/ending.jsp" %>

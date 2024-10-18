@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Evermart-My Orders</title>
 <%@ include file="../includes/imports.jsp" %>
 </head>
 <body>
@@ -35,7 +35,6 @@
     <%
 		List<Order> orders = null;
 		User u = (User) request.getSession().getAttribute("user");
-		// conn = request.getSesssion().getAttribute("conn");
    	 	OrderDao orderDao  = new OrderDao(DbCon.getConnection());
 		orders = orderDao.userOrders(u.getId());
 			if(orders != null){
@@ -127,17 +126,6 @@
 				
 </div>
 
-<!-- 
-	TODO:
-	
-	update the form submit locations 
-		review 
-		cancel
-		
-	refactor the cancel servlet add the msg even
-	for method get in cancel
-	
- -->
 
 <!-- Review Or Reject order modal -->
 <%
@@ -185,64 +173,10 @@
         	</div>
 		            
 			<button type="submit" class="w-full bg-red-700 text-white py-2 text-center rounded-md hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300">Reject Order</a>
-			<!-- 
-				../?id= o.getOrderId()
-				
-			
-			 -->
 		</form>
 	</div>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-
-	const reviewCancelModal = document.getElementById('reviewCancel-modal');
-	const reviewCloseBtn = document.getElementById('review-close-btn');
-	const cancelCloseBtn = document.getElementById('cancel-close-btn');	
-	
-	const reviewForm = document.getElementById('review-order-form');	
-	const cancelForm = document.getElementById('canel-order-form');	
-	
-	// Hide reviewCancel Modal
-	reviewCloseBtn.addEventListener('click', function() {
-		reviewCancelModal.classList.add('hidden');
-	});
-	cancelCloseBtn.addEventListener('click', function() {
-		reviewCancelModal.classList.add('hidden');
-	});
-	
-	const formModalPopups = () =>{
-		const urlParams = new URLSearchParams(window.location.search);
-		if (urlParams.has('orderId')) {
-			if (urlParams.has('action') && urlParams.get('action') === 'review') {
-				reviewCancelModal.classList.remove('hidden');
-				reviewForm.classList.remove('hidden');
-				if(!cancelForm.classList.contains('hidden')){
-					cancelForm.classList.add('hidden');
-				}      
-			}
-			
-			if (urlParams.has('action') && urlParams.get('action') === 'reject') {
-				reviewCancelModal.classList.remove('hidden');
-				cancelForm.classList.remove('hidden');
-				if(!reviewForm.classList.contains('hidden')){
-					reviewForm.classList.add('hidden');
-				}        
-			}
-			
-			 
-		}
-	
-		//if (urlParams.has('register') && urlParams.get('register') === 'failed') {
-		//	signupModal.classList.remove('hidden');       
-		//}
-		
-	}
-	formModalPopups();
-	
-	
-});
-</script>
+<script src="../components/js/orders.js"></script>
 <%@ include file="../includes/alert.jsp" %>
 </body>
 </html>

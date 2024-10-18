@@ -78,8 +78,7 @@ public class AddNewProductServlet extends HttpServlet {
 					
 					request.getSession().setAttribute("alertMessage", "Item added");
 	                request.getSession().setAttribute("alertType", "success");
-	                
-			        request.getSession().setAttribute("isProductAdded", "ltem Added");
+
 				}else {
 					adminActivity.setDescription("");
 					adminActivity.setStatus("Failed");

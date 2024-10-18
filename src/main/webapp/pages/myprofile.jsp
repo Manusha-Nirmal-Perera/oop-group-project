@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Evermart-Your Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -51,7 +51,8 @@
 		            </div>
 		            <div class="mb-4">
 		                <label for="chpw-password" class="block text-sm font-medium text-gray-700">New password</label>
-		                <input type="password" name="chpw-password" id="chpw-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="••••••••">
+		                <input minlength="8" pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*\d).{8,}$" title="Password must be at least 8 characters long, contain one uppercase letter, and one special character"
+		                 type="password" name="chpw-password" id="chpw-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" placeholder="••••••••">
 		            </div>
 		            <div class="mb-4">
 		                <label for="chpw-cnfrm-pwd" class="block text-sm font-medium text-gray-700">Confirm New password</label>

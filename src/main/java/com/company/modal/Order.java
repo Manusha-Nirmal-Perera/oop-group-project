@@ -7,6 +7,7 @@ public class Order extends Product{
 	private int qunatity;
 	private String date;
 	private String status;
+	private String msg;
 	
 	public Order() {
 	}
@@ -19,12 +20,12 @@ public class Order extends Product{
 		this.date = date;
 	}
 
-	public Order(int uid, int qunatity, String date) {
-		super();
-		this.uid = uid;
-		this.qunatity = qunatity;
-		this.date = date;
-	}
+//	public Order(int uid, int qunatity, String date) {
+//		super();
+//		this.uid = uid;
+//		this.qunatity = qunatity;
+//		this.date = date;
+//	}
 
 	public int getOrderId() {
 		return orderId;
@@ -36,7 +37,6 @@ public class Order extends Product{
 	public int getUid() {
 		return uid;
 	}
-
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
@@ -47,17 +47,26 @@ public class Order extends Product{
 	public void setQunatity(int qunatity) {
 		this.qunatity = qunatity;
 	}
+	
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 }
 

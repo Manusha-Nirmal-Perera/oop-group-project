@@ -12,20 +12,20 @@
 	    return;
 	}
     OrderDao odao = new OrderDao(DbCon.getConnection());
-    List<Order> pendingOrders = odao.getAllOrdersByStatus("pending");
-    List<Order> deliveredOrders = odao.getAllOrdersByStatus("Delivered");
-    pendingOrders.addAll(deliveredOrders);
+    List<Order> reviewedOrders = odao.getAllOrdersByStatus("Reviewed");
+    List<Order> acceptedOrders = odao.getAllOrdersByStatus("Accepted");
+    reviewedOrders.addAll(acceptedOrders);
     DecimalFormat dcf = new DecimalFormat("###,###.##");
 	request.setAttribute("dcf", dcf);
     	
 %>
     <main class="flex-grow p-6">
-    	<h2 class="text-2xl font-semibold text-gray-800 mb-6">Orders</h2>
+    	<h2 class="text-2xl font-semibold text-gray-800 mb-6">Accepted Orders</h2>
         <!-- Order Cards Container -->
 		<div class="overflow-y-auto" style="max-height: 750px;">
         <%
-			if (!pendingOrders.isEmpty()) {
-				for (Order o : pendingOrders) {
+			if (!reviewedOrders.isEmpty()) {
+				for (Order o : reviewedOrders) {
 			    	UserDao udao = new UserDao(DbCon.getConnection());
 			    	User u = udao.getUserByID(o.getUid());
 		%>
@@ -42,6 +42,7 @@
 		    			    <p><span class="font-semibold">Order Date:</span> <%= o.getDate() %></p>
 		    			    <p><span class="font-semibold">Quantity:</span> <%= o.getQunatity() %></p>
 		    			    <p><span class="font-semibold">Status:</span> <%= o.getStatus() %></p>
+		    			    <p><span class="font-semibold text-red-600">Review:</span> <span class="text-blue-600"><%= o.getMsg() %></span></p>
 		    			</div>
 		
 						<!-- User Info -->
@@ -57,20 +58,7 @@
 					        <p><span class="font-semibold">Product Name:</span> <%=o.getName() %></p>
 					        <p><span class="font-semibold">Unit Price:</span> <%=dcf.format(o.getPrice()) %></p>
 					        <p><span class="font-semibold">Total Price:</span> LKR <%=dcf.format(o.getPrice() * o.getQunatity())%></p>
-					    </div>
-						
-		    			<!-- Actions (Cancel and Deliver Buttons) -->
-		    			
-		    			<% if(o.getStatus().equals("pending")){ %>
-		    				<div class="flex flex-col space-y-2 w-20">
-			    					<a href="../admin-deliver-order?id=<%= o.getOrderId() %>" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Deliver</a>
-			    			    	<a href="../admin-cancel-order?id=<%= o.getOrderId() %>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Cancel</a>
-		    				</div>
-		    			<% }%> 
-		    			
-		    			<% if(o.getStatus().equals("Delivered")){ %>
-			    			<p class="border border-blue-500 text-blue-500 bg-white px-4 py-2 rounded-full">Delivered</p>
-		    			<%}%>
+					    </div>		    			
 					</div>
             
         <%

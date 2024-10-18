@@ -75,7 +75,8 @@
             </div>
             <div class="mb-4">
                 <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" name="signup-password" id="signup-password" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50" placeholder="••••••••">
+                <input minlength="8" pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*\d).{8,}$" title="Password must be at least 8 characters long, contain one uppercase letter, and one special character"
+                type="password" name="signup-password" id="signup-password" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50" placeholder="••••••••">
             </div>
             <div class="mb-4">
                 <label for="signup-cnfrm-pwd" class="block text-sm font-medium text-gray-700">Re-enter password</label>
@@ -91,6 +92,7 @@
 </div>
 
 <script src="/ecommerce/components/js/BLscript.js"></script>
+
 
 
   

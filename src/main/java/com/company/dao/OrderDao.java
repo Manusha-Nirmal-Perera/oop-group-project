@@ -22,12 +22,13 @@ public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrde
 		this.con = con;
 	}
 //	method to get all the orders 
-	public List<Order> getAllOrders() {
+	public List<Order> getAllOrdersByStatus(String status) {
         List<Order> orders = new ArrayList<>();
         try {
 
-            query = "SELECT * FROM orders";
+            query = "SELECT * FROM orders WHERE orders.o_status= ? ORDER BY orders.o_id desc";
             pst = this.con.prepareStatement(query);
+            pst.setString(1, status);
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -44,6 +45,7 @@ public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrde
                 o.setQunatity(rs.getInt("o_quantity"));
                 o.setDate(rs.getString("o_date"));
                 o.setStatus(rs.getString("o_status"));
+                o.setMsg(rs.getString("o_msg"));
                 o.setName(product.getName());
                 o.setPrice(product.getPrice());
                 o.setImage(product.getImage());
@@ -100,10 +102,11 @@ public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrde
 	public int getUserOrderCount(int uid) {
 	    int count = 0;
 	    try {
-	        String q = "SELECT COUNT(*) FROM orders WHERE u_id=?";
+	        String q = "SELECT COUNT(*) FROM orders WHERE u_id=? AND o_status = ?";
 	        PreparedStatement ps = con.prepareStatement(q);
 
 	        ps.setInt(1, uid);
+	        ps.setString(2, "pending");
 	        ResultSet r = ps.executeQuery();
 
 	        if (r.next()) {
@@ -203,9 +206,11 @@ public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrde
 	public boolean adminCancelOrder(int id) {
 		boolean result = false;
 		try {
-            query = "DELETE FROM orders WHERE o_id=?";
+            query = "UPDATE orders SET o_status = ?, o_msg= ? WHERE o_id = ?";
             pst = this.con.prepareStatement(query);
-            pst.setInt(1, id);
+            pst.setString(1, "Rejected");
+            pst.setString(2, "Rejected By Amin");
+            pst.setInt(3, id);
             pst.execute();
             result = true;
         } catch (SQLException e) {
@@ -233,7 +238,10 @@ public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrde
 	public double getTotalSales() {
 		double amount = 0;
 		try {
-			query = "SELECT SUM(o.o_quantity * p.price) FROM orders o, products p Where o.p_id = p.id AND o_status='Accepted'";
+			 String query = "SELECT SUM(o.o_quantity * p.price) " +
+                     "FROM orders o, products p " +
+                     "WHERE o.p_id = p.id AND o_status IN ('Accepted', 'Reviewed')";
+      
 			pst = this.con.prepareStatement(query);
 			rs = pst.executeQuery();
 			
