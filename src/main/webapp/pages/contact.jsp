@@ -38,7 +38,7 @@
                 
                 <div>
                     <label for="inquiry" class="block mb-2 text-sm font-medium text-gray-900">Type of Inquiry</label>
-                    <select id="inquiry" name="inquiry_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <select id="inquiry" name="inquiry_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="" disabled selected>Select an option</option>
                         <option value="report_issue">Report an Issue</option>
                         <option value="seek_assistance">Seek Assistance</option>
@@ -48,7 +48,7 @@
                 </div>
                 <div>
                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Your Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Enter your messege" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Write your message here..." required></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your messege" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Write your message here..."></textarea>
                 </div>
                 
                 <input type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="Send Messege">
@@ -72,8 +72,36 @@
 
     <!-- Footer -->
 <jsp:include page="../includes/footer.jsp" />
-	
-    <script src="/ecommerce/components/js/script.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+	    const form = document.querySelector("form");
+	    const inquiryType = document.getElementById("inquiry");
+	    const messageField = document.getElementById("message");
+
+	    form.addEventListener("submit", function (event) {
+	        let valid = true;
+
+	        // Validate inquiry type
+	        if (inquiryType.value === "") {
+	            valid = false;
+	            alert("Please select a valid inquiry type.");
+	        }
+
+	        // Validate message
+	        if (messageField.value.trim() === "") {
+	            valid = false;
+	            alert("Please enter a valid message.");
+	        }
+
+	        // Prevent form submission if validation fails
+	        if (!valid) {
+	            event.preventDefault(); // Stops the form from submitting
+	        }
+	    });
+	});
+	</script>
+    <script src="/ecommerce/components/js/BLscript.js"></script>
+    <script src="/ecommerce/components/js/ALscript.js"></script>
     <%@ include file="../includes/alert.jsp" %>
 </body>
 </html>

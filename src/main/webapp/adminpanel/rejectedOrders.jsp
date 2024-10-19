@@ -58,7 +58,7 @@
 					        <p><span class="font-semibold">Total Price:</span> LKR <%=dcf.format(o.getPrice() * o.getQunatity())%></p>
 					    </div>	
 					    <div class="w-10 mr-2">
-					    	<a class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"><i class="fas fa-trash"></i></a>
+					    	<a href="/ecommerce/admin-rm-unwanted-orders?oid=<%=o.getOrderId() %>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"><i class="fas fa-trash"></i></a>
 					    </div>			    	
 					</div>
             
