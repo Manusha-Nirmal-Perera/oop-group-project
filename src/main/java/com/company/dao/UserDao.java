@@ -6,11 +6,9 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.company.Repository.UserRepository;
-import com.company.Repository.UserServiceRepository;
 import com.company.modal.*;
 
-public class UserDao implements UserRepository, UserServiceRepository{
+public class UserDao {
 	private Connection con;
 
 	private String query;

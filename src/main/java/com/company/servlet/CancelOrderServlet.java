@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.company.dao.OrderDao;
 import com.company.connection.DbCon;
+import com.company.dao.OrderDao;
 
 
 /**

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.company.dao.UserDao;
 import com.company.connection.DbCon;
+import com.company.dao.UserDao;
 import com.company.modal.User;
 
 /**

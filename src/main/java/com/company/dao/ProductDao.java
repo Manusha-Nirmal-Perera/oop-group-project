@@ -3,12 +3,11 @@ package com.company.dao;
 import java.sql.*;
 import java.util.*;
 
-import com.company.Repository.ProductRepository;
 import com.company.connection.DbCon;
 import com.company.modal.Cart;
 import com.company.modal.Product;
 
-public class ProductDao implements ProductRepository {
+public class ProductDao {
 	private Connection con;
 
 	private String query;

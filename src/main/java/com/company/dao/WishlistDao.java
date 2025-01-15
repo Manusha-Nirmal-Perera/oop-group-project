@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.company.Repository.WishlistRepository;
 import com.company.modal.Product;
 import com.company.modal.WishlistItem;
 
-public class WishlistDao implements WishlistRepository{
+public class WishlistDao {
 	private Connection con;
 
 	private String query;
@@ -66,7 +65,7 @@ public class WishlistDao implements WishlistRepository{
 		return result;
 	}
 	
-//	method to get single wishlist item
+//	method to get single wish-list item
 	public WishlistItem getSingleItem (int recId) {
 		WishlistItem wlItem =null;
         try {
@@ -123,7 +122,6 @@ public class WishlistDao implements WishlistRepository{
 	    return result;
 	}
 	
-	@Override
 	public boolean qtyUpdate(int recId, int qty) {
 		boolean result = false;
 		try {

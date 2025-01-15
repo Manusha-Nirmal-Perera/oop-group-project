@@ -2,6 +2,8 @@ package com.company.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.company.connection.DbCon;
+import com.company.dao.OrderDao;
 import com.company.dao.UserDao;
+import com.company.modal.Order;
 
 /**
  * Servlet implementation class DeleteAccServlet
@@ -22,6 +26,8 @@ public class DeleteAccServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int UserId = Integer.parseInt(request.getParameter("id")); 
 		try {
+//			TODO: When a user delete an account orders info become null 
+//					so as the solution implement a soft delete so that account status is changed to deleted and the record is preserved
 			UserDao udao = new UserDao(DbCon.getConnection());
 			boolean result = udao.deleteUser(UserId);
 			if(result) {

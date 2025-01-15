@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.company.Repository.*;
 import com.company.modal.*;
 
-public class OrderDao implements OrderRepository, AdminOrderRepository, UserOrderRepository, OrderStatisticsRepository {
+public class OrderDao {
 	
 	private Connection con;
 	private String query;

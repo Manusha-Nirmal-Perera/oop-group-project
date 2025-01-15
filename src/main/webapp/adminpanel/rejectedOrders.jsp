@@ -26,6 +26,9 @@
 				for (Order o : orders) {
 			    	UserDao udao = new UserDao(DbCon.getConnection());
 			    	User u = udao.getUserByID(o.getUid());
+			    	if(!(u.getId() > 0)){
+			    		continue;
+			    	}
 		%>
         		<!-- Order Card -->
 					<div class="bg-gray-100 hover:bg-gray-300 p-4 rounded-lg shadow-md flex items-center justify-between items-start space-x-4 my-1">
