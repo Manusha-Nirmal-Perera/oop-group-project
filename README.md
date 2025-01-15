@@ -1,78 +1,129 @@
-I've attached the database with this as well. 
-🚀 Maven Project Setup Guide
-This guide will help you smoothly convert your existing dynamic web project into a Maven project and get everything up and running! 😎
+# OOP Group Project
 
-1️⃣ Convert Your Dynamic Web Project to Maven
-If you've already created a dynamic web project in your IDE (like Eclipse), follow these easy steps to convert it into a Maven project:
+Welcome to the OOP Group Project! This project is a Maven-based web application designed to demonstrate object-oriented programming principles in a practical setting.
 
-Right-click on your project name in the Project Explorer.
-Navigate to Configure → Convert to Maven Project.
-Maven will automatically generate a pom.xml file to manage dependencies.
-✔️ Done! Your project is now Maven-based!
+## Table of Contents
 
-2️⃣ Update pom.xml with Dependencies
-Now it's time to update the pom.xml file with the necessary dependencies for your project.
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
 
-Open the pom.xml file.
+## Project Overview
 
-Add the required dependencies. (reffer pom.xml)
+This project serves as a comprehensive example of applying object-oriented programming concepts in a web application. It includes functionalities such as user management, product listings, and order processing, all structured to showcase best practices in OOP design.
 
-3️⃣ Force Dependency Updates ⏩
-If your dependencies don't install automatically, don’t worry! You can manually force Maven to update them:
+## Features
 
-Right-click on your project.
-Choose Maven → Update Project.
-If you're unsure how to force an update, check out a quick tutorial or ask ChatGPT for more guidance! 🤖
+### Admin Features
+- Add new products
+- Edit product information
+- Deliver or reject orders
+- View and delete reviews
+- View and delete reports
+- See user reviews
 
-4️⃣ Move Your Project Files to the Maven Folder Structure 📂
-Now it's time to organize your code! Follow Maven’s standard folder hierarchy to keep everything neat and functional:
+### User Features
+- Add to wishlist
+- Add to cart
+- Edit cart
+- Checkout and place orders
+- Accept or reject orders
+- Review orders
+- Send reports
+- View sent reports and their status
+- Edit personal information
 
-Java code (Servlets, DAOs, Models) goes into:
-src/main/java/com/company
+## Installation
 
-Web content (HTML, JSP, JS, CSS) goes into:
-src/main/webapp
+To set up this project locally, follow these steps:
 
-Here’s a quick breakdown of where to put things:
+1. **Clone the repository**:
 
-📂 Maven Folder	📝 What to Move
-src/main/java	Java files (Servlets, DAOs, Models, Utilities)
-src/main/webapp	JSP files, HTML pages
-src/main/webapp/resources	CSS, JS, Images, and other static resources
-🚨 Important: Make sure to maintain your folder structure and hierarchy for everything to run smoothly!
+   ```bash
+   git clone https://github.com/Manusha-Nirmal-Perera/oop-group-project.git
 
-🎉 And that’s it! You've successfully converted your dynamic web project into a Maven project! 🎉
+---
 
-Now, you're all set to manage your dependencies easily and organize your code like a pro! 💪
+2. **Navigate to the project directory**:
 
+   ```bash
+   cd "path/to/your/location/oop-group-project"
 
-============================================================================================================================================================================================================================================================================
+---
 
-Setting Up the Database Connection 🛠️
-  
-  1.  Start Apache Server:
+3. **Import the Project into Your IDE**:
 
-    Open the XAMPP Control Panel. 🖥️
-    Click the "Start" button next to "Apache." 🚀
-    If Apache doesn’t start, it might be due to a port conflict with Tomcat. To fix this:
-    Stop Tomcat by clicking the "Stop" button next to it. 🛑
-    Alternatively, you can change the port number for Tomcat if needed. 🔧
-    
-  2.  Create a Database:
+   - Open your IDE (e.g., Eclipse, IntelliJ IDEA).
+   - Import the project as a Maven project.
 
-    Open your web browser and go to http://localhost/phpmyadmin. 🌐
-    Click on the "Databases" tab at the top of the page. 📚
-    In the "Create database" field, type online_store and click "Create." 🏗️
-    
-    
-  3.  Import the SQL File:
+---
 
-    After creating the database, click on the "SQL" tab in the top navigation bar. 📂
-    Copy the contents of the online_store.sql file and paste them into the text area. 📋
-    Scroll down and click the "Go" button to execute the SQL script and set up the database schema. ✅
-    
-  4.  Update Database Connection Credentials:
+4. **Set Up the Database**:
 
-    Locate the DbCon.java file in your project directory under com.company.connection. 📁
-    Open DbCon.java. 📝
-    Update the database connection credentials (e.g., username, password, database URL) to match your local setup. 🔑
+   - Locate the `online_store.sql` file in the project root.
+   - Use this file to create the necessary database schema in your preferred database management system.
+
+---
+
+5. **Configure Database Connection**:
+
+1. Open the `src/main/resources/application.properties` file.
+2. Update the database connection properties to match your local setup.
+
+---
+
+6. **Build and Run the Project**:
+
+   - Use Maven to build the project:
+     ```bash
+     mvn clean install
+     ```
+   - Deploy the application on your local server.
+---
+
+## Usage
+
+### Once the Application is Running:
+
+- Access the web application through your browser at:  
+  `http://localhost:8080`
+- Register a new user.
+- Registe a new Admin
+- Explore the product listings, add items to your cart, add items to wishlist, and proceed to checkout. Also try editing personal info.
+- From admin side ty adding a new product, edit product info, cancel or deliver orders
+
+## Contributing
+
+We welcome contributions to enhance this project. To contribute:
+
+1. **Fork the repository**.
+ 
+---
+
+2. **Create a new branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+---
+
+3. **Make your changes**:
+
+---
+
+4. **Commit your changes:**:
+    ```bash
+   git commit -m "Add feature: your feature name"
+   ```
+
+---
+
+5. **Push to your branch**:
+     ```bash
+     git push origin feature/your-feature-name
+     ```
+
+---
+
+6. **Create a Pull Request**:
